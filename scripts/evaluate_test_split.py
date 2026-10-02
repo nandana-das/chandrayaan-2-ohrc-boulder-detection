@@ -10,9 +10,9 @@ RESULTS_DIR = BASE / "results"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
 MODELS = {
-'YOLO26n': RUNS / 'stage2_yolo26n_combined_hm_v2-2' / 'weights' / 'best.pt',
-'YOLOv8n': RUNS / 'stage2_yolov8n_combined_hm_v2-2' / 'weights' / 'best.pt',
-'YOLOv5s': RUNS / 'stage2_yolov5s_combined_hm_v2-2' / 'weights' / 'best.pt',
+    'YOLO26n': RUNS / 'stage2_yolo26n_combined_hm_cosine' / 'weights' / 'best.pt',
+    'YOLOv8n': RUNS / 'stage2_yolov8n_combined_hm_cosine' / 'weights' / 'best.pt',
+    'YOLOv5s': RUNS / 'stage2_yolov5s_combined_hm_cosine' / 'weights' / 'best.pt',
 }
 
 def main():
