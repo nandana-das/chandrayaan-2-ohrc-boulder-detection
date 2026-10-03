@@ -1,0 +1,8 @@
+# Preprocessed one-class evaluation dataset (Histogram-matched to project OHRC reference)
+path: D:/Nandana/MTECH/Semester 3/Projects/TP/lunar-landslide-boulder-detection/results/external_ohrc_diagnostic/project_preprocessed
+train: images
+val: images
+test: images
+
+nc: 1
+names: ['boulder']

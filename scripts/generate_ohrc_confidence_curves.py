@@ -39,9 +39,9 @@ TILES_PRIO = list((BASE / "data/priority_sample").glob("*.png"))
 ALL_TILES = sorted(list(set([str(f) for f in TILES_914 + TILES_PRIO])))
 
 MODELS = {
-    "YOLO26n": RUNS / "stage2_yolo26n_combined_hm_v2" / "weights" / "best.pt",
-    "YOLOv8n": RUNS / "stage2_yolov8n_combined_hm_v2" / "weights" / "best.pt",
-    "YOLOv5s": RUNS / "stage2_yolov5s_combined_hm_v2" / "weights" / "best.pt",
+    "YOLO26n": RUNS / "stage2_yolo26n_combined_hm_cosine" / "weights" / "best.pt",
+    "YOLOv8n": RUNS / "stage2_yolov8n_combined_hm_cosine" / "weights" / "best.pt",
+    "YOLOv5s": RUNS / "stage2_yolov5s_combined_hm_cosine" / "weights" / "best.pt",
 }
 
 def box_iou(box1, box2):

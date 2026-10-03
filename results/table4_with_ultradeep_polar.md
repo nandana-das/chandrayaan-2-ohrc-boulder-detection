@@ -4,13 +4,13 @@ Cross-regional boulder detection performance comparing the existing baseline reg
 
 | region | model | detection_count | tiles_with_detection | total_evaluated_tiles | tile_detection_rate_pct | mean_confidence | std_confidence | detections_per_positive_tile |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| South Pole (lat ≈ -70°S) | YOLO26n | 343 | 181 | 724 | 25.0 | 0.2979 | 0.0934 | 1.9 |
-| South Pole (lat ≈ -70°S) | YOLOv8n | 1925 | 260 | 724 | 35.91 | 0.3182 | 0.1107 | 7.4 |
-| South Pole (lat ≈ -70°S) | YOLOv5s | 65 | 34 | 724 | 4.7 | 0.2858 | 0.0764 | 1.91 |
-| Equatorial (lat ≈ +60°N) | YOLO26n | 1710 | 343 | 690 | 49.71 | 0.2965 | 0.0862 | 4.99 |
-| Equatorial (lat ≈ +60°N) | YOLOv8n | 1921 | 392 | 690 | 56.81 | 0.3092 | 0.1003 | 4.9 |
-| Equatorial (lat ≈ +60°N) | YOLOv5s | 1809 | 386 | 690 | 55.94 | 0.3175 | 0.1018 | 4.69 |
-| Ultra-Deep South Pole (lat ≤ -89.5°S) | YOLO26n | 2900 | 1247 | 13906 | 8.97 | 0.2799 | 0.0789 | 2.33 |
-| Ultra-Deep South Pole (lat ≤ -89.5°S) | YOLOv8n | 7689 | 2268 | 13906 | 16.31 | 0.3098 | 0.106 | 3.39 |
-| Ultra-Deep South Pole (lat ≤ -89.5°S) | YOLOv5s | 1051 | 427 | 13906 | 3.07 | 0.3182 | 0.1089 | 2.46 |
+| South Pole (lat ≈ -70°S) | YOLO26n | 3982 | 1176 | 16308 | 7.21 | 0.2567 | 0.0564 | 3.39 |
+| South Pole (lat ≈ -70°S) | YOLOv8n | 292371 | 12689 | 16308 | 77.81 | 0.2961 | 0.0879 | 23.04 |
+| South Pole (lat ≈ -70°S) | YOLOv5s | 3698 | 2234 | 16308 | 13.7 | 0.2824 | 0.0799 | 1.66 |
+| Equatorial (lat ≈ +60°N) | YOLO26n | 1102 | 958 | 15461 | 6.2 | 0.2458 | 0.0452 | 1.15 |
+| Equatorial (lat ≈ +60°N) | YOLOv8n | 61056 | 1440 | 15461 | 9.31 | 0.3396 | 0.1156 | 42.4 |
+| Equatorial (lat ≈ +60°N) | YOLOv5s | 20754 | 1662 | 15461 | 10.75 | 0.3387 | 0.1139 | 12.49 |
+| Ultra-Deep South Pole (lat ≤ -89.5°S) | YOLO26n | 10085 | 1173 | 13906 | 8.44 | 0.2907 | 0.082 | 8.6 |
+| Ultra-Deep South Pole (lat ≤ -89.5°S) | YOLOv8n | 71001 | 6047 | 13906 | 43.48 | 0.2959 | 0.088 | 11.74 |
+| Ultra-Deep South Pole (lat ≤ -89.5°S) | YOLOv5s | 7202 | 1779 | 13906 | 12.79 | 0.3214 | 0.107 | 4.05 |
 | Ultra-Deep South Pole (lat ≤ -89.5°S) | RT-DETR-L | 532844 | 11664 | 13906 | 83.88 | 0.3258 | 0.1063 | 45.68 |

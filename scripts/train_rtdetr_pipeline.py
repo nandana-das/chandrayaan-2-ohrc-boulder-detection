@@ -241,9 +241,9 @@ def run_stage3_ohrc_inference(stage2_weights: str):
 
     # Compile Table III comparing with existing YOLO models
     table3_rows = [
-        {'Model': 'YOLO26n', 'Total Detections': 4565, 'Positive Tiles': 1193, 'Evaluated Tiles': 31769, 'Mean Confidence': 0.297},
-        {'Model': 'YOLOv5s', 'Total Detections': 5026, 'Positive Tiles': 1532, 'Evaluated Tiles': 31769, 'Mean Confidence': 0.312},
-        {'Model': 'YOLOv8n', 'Total Detections': 41941, 'Positive Tiles': 6621, 'Evaluated Tiles': 31769, 'Mean Confidence': 0.313},
+        {'Model': 'YOLO26n', 'Total Detections': 5084, 'Positive Tiles': 2134, 'Evaluated Tiles': 31769, 'Mean Confidence': 0.254},
+        {'Model': 'YOLOv5s', 'Total Detections': 24452, 'Positive Tiles': 3896, 'Evaluated Tiles': 31769, 'Mean Confidence': 0.330},
+        {'Model': 'YOLOv8n', 'Total Detections': 353427, 'Positive Tiles': 14129, 'Evaluated Tiles': 31769, 'Mean Confidence': 0.304},
         {'Model': 'RT-DETR-L', 'Total Detections': total_detections, 'Positive Tiles': positive_tiles, 'Evaluated Tiles': scanned_tiles, 'Mean Confidence': round(det_df['conf'].mean() if len(det_df) else 0.0, 4)}
     ]
     t3_df = pd.DataFrame(table3_rows)

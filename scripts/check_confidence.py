@@ -8,8 +8,8 @@ TILES = str(BASE / "data/tiles/usable")
 RUNS = Path(str(BASE / "runs"))
 
 MODELS = {
-    'yolo26n': RUNS / 'stage2_yolo26n_combined_hm_v2' / 'weights' / 'best.pt',
-    'yolov5s': RUNS / 'stage2_yolov5s_combined_hm_v2' / 'weights' / 'best.pt',
+    'yolo26n': RUNS / 'stage2_yolo26n_combined_hm_cosine' / 'weights' / 'best.pt',
+    'yolov5s': RUNS / 'stage2_yolov5s_combined_hm_cosine' / 'weights' / 'best.pt',
 }
 
 if __name__ == '__main__':

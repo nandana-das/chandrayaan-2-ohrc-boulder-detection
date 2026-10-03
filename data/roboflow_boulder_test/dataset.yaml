@@ -1,0 +1,8 @@
+# One-class evaluation dataset (boulder ground truth from Roboflow test split)
+path: D:/Nandana/MTECH/Semester 3/Projects/TP/lunar-landslide-boulder-detection/data/roboflow_boulder_test
+train: images
+val: images
+test: images
+
+nc: 1
+names: ['boulder']

@@ -116,3 +116,6 @@ data/prieur/moon_only/
 
 data/combined_hm/
 data/prieur/
+data/external_ohrc_roboflow/
+*.cache
+

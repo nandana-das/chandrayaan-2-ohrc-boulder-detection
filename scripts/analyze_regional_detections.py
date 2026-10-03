@@ -56,7 +56,7 @@ def main():
     inference_dir = root / 'results' / 'ohrc_inference'
     
     # Check evaluated tiles count per region
-    sample_dirs = [Path('C:/ohrc_detections/images'), root / 'data' / 'priority_sample']
+    sample_dirs = [root / 'data' / 'tiles' / 'usable', Path('C:/ohrc_detections/images'), root / 'data' / 'priority_sample']
     all_evaluated_tiles = set()
     for sdir in sample_dirs:
         if sdir.exists():
@@ -195,14 +195,14 @@ def main():
             
     # Chart styling
     region_labels = [
-        'South Pole Region\n(lat ≈ -70°S, 6 Products, 724 Tiles)',
-        'Equatorial / Northern Region\n(lat ≈ +60°N, 6 Products, 690 Tiles)'
+        f'South Pole Region\n(lat ≈ -70°S, 6 Products, {south_eval_tiles:,} Tiles)',
+        f'Equatorial / Northern Region\n(lat ≈ +60°N, 6 Products, {eq_eval_tiles:,} Tiles)'
     ]
     ax.set_xticks(x)
     ax.set_xticklabels(region_labels, fontsize=11, fontweight='semibold')
     ax.set_ylabel('Total Detection Count (τ = 0.20)', fontsize=12, fontweight='bold')
     ax.set_title(
-        'OHRC Stage-2 Boulder Detections by Product Region and Model\n(Chandrayaan-2 OHRC: 12 Products, 1,414 Evaluated Tiles)',
+        f'OHRC Stage-2 Boulder Detections by Product Region and Model\n(Chandrayaan-2 OHRC: 12 Products, {len(all_evaluated_tiles):,} Evaluated Tiles)',
         fontsize=13, fontweight='bold', pad=16
     )
     

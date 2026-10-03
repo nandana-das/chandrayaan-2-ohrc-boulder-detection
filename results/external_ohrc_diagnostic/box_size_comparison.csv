@@ -1,0 +1,4 @@
+Dataset,Total_Boxes,Mean_Width_px,Median_Width_px,Min_Width_px,Max_Width_px,Mean_Height_px,Median_Height_px,Min_Height_px,Max_Height_px
+External OHRC Benchmark (Native 512x512),338,17.52,15.25,5.13,85.66,16.94,14.73,4.82,115.02
+External OHRC Benchmark (Rescaled to 640x640 letterboxed),338,21.9,19.06,6.41,107.07,21.17,18.41,6.03,143.77
+Project Combined HM Training Set (640x640),122537,8.96,7.68,1.92,279.46,9.2,7.68,0.64,322.99

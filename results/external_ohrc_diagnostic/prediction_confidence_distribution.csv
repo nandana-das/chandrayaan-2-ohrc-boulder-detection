@@ -1,0 +1,4 @@
+Model,Max_Confidence,Preds_ge_0_20,Preds_ge_0_05,Preds_ge_0_01,Preds_ge_0_005,Preds_ge_0_001,Total_Raw_Candidates
+YOLO26n,0.0893,0,11,241,838,2695,2695
+YOLOv8n,0.5955,218,1332,2984,3000,3000,3000
+YOLOv5s,0.0271,0,0,12,28,398,398

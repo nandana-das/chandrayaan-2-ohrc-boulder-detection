@@ -8,9 +8,9 @@ Automated pipeline for the 20 downloaded ultra-deep polar calibrated OHRC produc
    applying identical percentile stretch (p2-p98 -> uint8) as original Module I.
 4. Clean up extracted .img immediately after tiling each product to conserve disk space.
 5. Run Stage 3 inference using trained Stage-2 weights:
-   - YOLO26n (stage2_yolo26n_combined_hm_v2)
-   - YOLOv8n (stage2_yolov8n_combined_hm_v2)
-   - YOLOv5s (stage2_yolov5s_combined_hm_v2)
+   - YOLO26n (stage2_yolo26n_combined_hm_cosine)
+   - YOLOv8n (stage2_yolov8n_combined_hm_cosine)
+   - YOLOv5s (stage2_yolov5s_combined_hm_cosine)
    - RT-DETR-L (stage2_rtdetr_l_combined_hm)
 6. Generate comparison Table IV matching the existing regional detection analysis.
 """
@@ -51,20 +51,15 @@ POLAR_EXTRACT_TMP = ROOT / "data" / "extracted_polar_tmp"
 POLAR_TILES_USABLE = ROOT / "data" / "tiles" / "polar_usable"
 POLAR_INFERENCE_DIR = RESULTS_DIR / "polar_inference"
 
-# Clear previous tiles from faulty run if any
-if POLAR_TILES_USABLE.exists():
-    shutil.rmtree(POLAR_TILES_USABLE)
-if POLAR_EXTRACT_TMP.exists():
-    shutil.rmtree(POLAR_EXTRACT_TMP)
-
+# Create output directories if needed
 for d in [POLAR_EXTRACT_TMP, POLAR_TILES_USABLE, POLAR_INFERENCE_DIR]:
     d.mkdir(parents=True, exist_ok=True)
 
 RUNS = ROOT / "runs"
 MODELS = {
-    'YOLO26n': (YOLO, RUNS / 'stage2_yolo26n_combined_hm_v2' / 'weights' / 'best.pt'),
-    'YOLOv8n': (YOLO, RUNS / 'stage2_yolov8n_combined_hm_v2' / 'weights' / 'best.pt'),
-    'YOLOv5s': (YOLO, RUNS / 'stage2_yolov5s_combined_hm_v2' / 'weights' / 'best.pt'),
+    'YOLO26n': (YOLO, RUNS / 'stage2_yolo26n_combined_hm_cosine' / 'weights' / 'best.pt'),
+    'YOLOv8n': (YOLO, RUNS / 'stage2_yolov8n_combined_hm_cosine' / 'weights' / 'best.pt'),
+    'YOLOv5s': (YOLO, RUNS / 'stage2_yolov5s_combined_hm_cosine' / 'weights' / 'best.pt'),
     'RT-DETR-L': (RTDETR, RUNS / 'stage2_rtdetr_l_combined_hm' / 'weights' / 'best.pt'),
 }
 
@@ -245,6 +240,32 @@ def run_stage3_inference():
     for model_name, (cls, weight_path) in MODELS.items():
         print(f"\n>>> Running Model: {model_name}")
         print(f"    Weights: {weight_path}")
+        raw_csv = POLAR_INFERENCE_DIR / f"raw_detections_{model_name.lower().replace('-', '_')}.csv"
+
+        if model_name == 'RT-DETR-L' and raw_csv.exists():
+            print(f"    [INFO] Reusing existing cached RT-DETR-L detections from: {raw_csv}")
+            det_df = pd.read_csv(raw_csv)
+            det_count = len(det_df)
+            pos_count = det_df["tile"].nunique()
+            eval_count = total_tiles
+            rate = round(100.0 * pos_count / max(eval_count, 1), 2)
+            mean_conf = round(float(det_df["conf"].mean()), 4) if det_count > 0 else 0.0
+            std_conf = round(float(det_df["conf"].std()), 4) if det_count > 0 else 0.0
+            det_per_pos = round(det_count / max(pos_count, 1), 2)
+            print(f"    Detections: {det_count} | Positive Tiles: {pos_count}/{eval_count} ({rate}%) | Mean Conf: {mean_conf:.4f} ± {std_conf:.4f}")
+            results_records.append({
+                "region": "Ultra-Deep South Pole (lat ≤ -89.5°S)",
+                "model": model_name,
+                "detection_count": det_count,
+                "tiles_with_detection": pos_count,
+                "total_evaluated_tiles": eval_count,
+                "tile_detection_rate_pct": rate,
+                "mean_confidence": mean_conf,
+                "std_confidence": std_conf,
+                "detections_per_positive_tile": det_per_pos
+            })
+            continue
+
         if not weight_path.exists():
             print(f"    [ERROR] Missing weights: {weight_path}")
             continue
@@ -338,10 +359,14 @@ def update_table4(polar_df):
 
 def main():
     print("Starting processing of 20 ultra-deep polar products...")
-    n_tiles = extract_and_tile_all()
-    if n_tiles == 0:
-        print("[ERROR] No usable tiles were generated. Exiting.")
-        return
+    existing_tiles = list(POLAR_TILES_USABLE.glob("*.png"))
+    if len(existing_tiles) > 0:
+        print(f"Found {len(existing_tiles)} usable polar tiles in {POLAR_TILES_USABLE}. Skipping extraction/tiling.")
+    else:
+        n_tiles = extract_and_tile_all()
+        if n_tiles == 0:
+            print("[ERROR] No usable tiles were generated. Exiting.")
+            return
     polar_df = run_stage3_inference()
     update_table4(polar_df)
     print("\nAll tasks finished successfully.")
