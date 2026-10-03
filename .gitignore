@@ -115,6 +115,8 @@ data/prieur/boulder2024/
 data/prieur/moon_only/
 
 data/combined_hm/
+data/combined_nohm/
+!data/combined_nohm/dataset_combined_nohm.yaml
 data/prieur/
 data/external_ohrc_roboflow/
 *.cache

@@ -1,0 +1,7 @@
+path: D:/Nandana/MTECH/Semester 3/Projects/TP/lunar-landslide-boulder-detection/data/combined_nohm
+train: train/images
+val: val/images
+test: test/images
+nc: 1
+names:
+- boulder
