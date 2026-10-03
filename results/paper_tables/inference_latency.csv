@@ -1,0 +1,4 @@
+Model,Device,Batch_Size,Image_Size,Tiles_Evaluated,Mean_Latency_ms,Median_Latency_ms,Std_Latency_ms,Min_Latency_ms,Max_Latency_ms,FPS
+YOLO26n,NVIDIA GeForce RTX 3050 Laptop GPU,1,640x640,100,48.68,49.55,4.46,39.06,63.02,20.5
+YOLOv8n,NVIDIA GeForce RTX 3050 Laptop GPU,1,640x640,100,31.37,30.74,2.12,29.34,46.82,31.9
+YOLOv5s,NVIDIA GeForce RTX 3050 Laptop GPU,1,640x640,100,33.0,32.2,1.82,31.17,40.37,30.3

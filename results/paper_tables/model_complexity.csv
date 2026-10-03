@@ -1,0 +1,4 @@
+Model,Architecture_Base,Input_Resolution,Parameters,Parameters_M,GFLOPs,Model_Size_MB,Total_Modules
+YOLO26n,YOLOv11-Nano (Custom Head),640 × 640,2504190,2.504,2.89,5.14,454
+YOLOv8n,YOLOv8-Nano,640 × 640,3011043,3.011,4.1,5.96,225
+YOLOv5s,YOLOv5-Small,640 × 640,9122579,9.123,12.02,17.66,262
