@@ -1,6 +1,8 @@
 # Chandrayaan-2 OHRC Preprocessing Pipeline
 # Python 3.11+
-# Install with: pip install -r requirements.txt
+# Install with:
+#   1. pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
+#   2. pip install -r requirements.txt
 
 pds4-tools>=1.4
 numpy>=1.24
@@ -14,3 +16,7 @@ scipy>=1.11
 ultralytics>=8.0
 requests>=2.31
 pyyaml>=6.0
+# Web scraping (scrape_calibrated_catalog.py)
+beautifulsoup4>=4.12
+# FLOPs profiling (paper_generation/generate_task_f.py)
+thop>=0.1.1
