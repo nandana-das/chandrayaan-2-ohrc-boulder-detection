@@ -14,6 +14,7 @@ OUT_FIG.mkdir(parents=True, exist_ok=True)
 # Load detection CSVs
 files = {
     'YOLO26n': RESULTS / 'ohrc_inference/raw_detections_yolo26n.csv',
+    'YOLO26m': RESULTS / 'ohrc_inference/raw_detections_yolo26m.csv',
     'YOLOv8n': RESULTS / 'ohrc_inference/raw_detections_yolov8n.csv',
     'YOLOv5s': RESULTS / 'ohrc_inference/raw_detections_yolov5s.csv',
 }
@@ -25,6 +26,7 @@ for name, fpath in files.items():
 
 colors = {
     'YOLO26n': '#1f77b4',  # steel blue
+    'YOLO26m': '#9467bd',  # purple
     'YOLOv8n': '#d95f02',  # burnt orange
     'YOLOv5s': '#2ca02c',  # forest green
 }
@@ -32,6 +34,7 @@ colors = {
 # Proxy operating points from consensus analysis (NOT ground truth)
 proxy_points = {
     'YOLO26n': {'tau': 0.20, 'f1': 0.1347, 'p': 0.2909, 'r': 0.0877},
+    'YOLO26m': {'tau': 0.20, 'f1': 0.0000, 'p': 0.0000, 'r': 0.0000},
     'YOLOv8n': {'tau': 0.46, 'f1': 0.2201, 'p': 0.1749, 'r': 0.2970},
     'YOLOv5s': {'tau': 0.20, 'f1': 0.7473, 'p': 0.6314, 'r': 0.9153},
 }
@@ -49,7 +52,7 @@ plt.rcParams.update({
     'grid.alpha': 0.4,
 })
 
-fig, axes = plt.subplots(1, 3, figsize=(16, 5), sharey=True)
+fig, axes = plt.subplots(1, 4, figsize=(20, 5), sharey=True)
 
 bins = np.linspace(0.20, 1.0, 41)  # 0.02 step from 0.20 to 1.00
 

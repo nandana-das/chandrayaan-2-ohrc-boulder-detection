@@ -1,5 +1,6 @@
 Model,Model_Status,Detections,Positive_Tiles,Total_Tiles,Positive_Tile_Rate_Pct,Mean_Confidence
 YOLO26n,Stage-2 Cosine (Current),10085,1173,13906,8.44,0.2907
+YOLO26m,Stage-2 Cosine (Current),1447,309,13906,2.22,0.3057
 YOLOv8n,Stage-2 Cosine (Current),71001,6047,13906,43.48,0.2959
 YOLOv5s,Stage-2 Cosine (Current),7202,1779,13906,12.79,0.3214
 RT-DETR-L,Historical Baseline (Pre-Stage 2),532844,11664,13906,83.88,0.3258

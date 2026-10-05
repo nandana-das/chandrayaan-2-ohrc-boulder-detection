@@ -13,6 +13,7 @@ OHRC_INFERENCE_DIR = RESULTS_DIR / "ohrc_inference"
 
 MODELS = {
     'yolo26n': RUNS / 'stage2_yolo26n_combined_hm_cosine' / 'weights' / 'best.pt',
+    'yolo26m': RUNS / 'stage2_yolo26m_combined_hm_cosine' / 'weights' / 'best.pt',
     'yolov8n': RUNS / 'stage2_yolov8n_combined_hm_cosine' / 'weights' / 'best.pt',
     'yolov5s': RUNS / 'stage2_yolov5s_combined_hm_cosine' / 'weights' / 'best.pt',
 }
@@ -92,7 +93,7 @@ def run_inference(model_name: str, weights: Path, conf: float = 0.20):
 def main():
     parser = argparse.ArgumentParser(description="OHRC Target Domain Inference")
     parser.add_argument('--conf', type=float, default=0.20, help="Confidence threshold (default: 0.20)")
-    parser.add_argument('--model', type=str, default='all', choices=['all', 'yolo26n', 'yolov8n', 'yolov5s'],
+    parser.add_argument('--model', type=str, default='all', choices=['all', 'yolo26n', 'yolo26m', 'yolov8n', 'yolov5s'],
                         help="Specific model to run or 'all'")
     args = parser.parse_args()
 

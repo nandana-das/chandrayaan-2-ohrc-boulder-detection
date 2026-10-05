@@ -381,7 +381,7 @@ def run_comparison_tables(eval_results=None, target_results=None):
     OUT_TAB.mkdir(parents=True, exist_ok=True)
     
     # Read individual test CSVs if not passed
-    if eval_results is None:
+    if not eval_results:
         eval_results = {}
         for m in ['yolo26s', 'yolo26m']:
             p = OUT_EXP / f"test_metrics_{m}.csv"
@@ -390,7 +390,7 @@ def run_comparison_tables(eval_results=None, target_results=None):
                 dname = 'YOLO26s' if m == 'yolo26s' else 'YOLO26m'
                 eval_results[dname] = d
                 
-    if target_results is None:
+    if not target_results:
         target_results = {}
         for m in ['yolo26s', 'yolo26m']:
             p = OUT_EXP / f"target_ohrc_{m}.csv"
@@ -707,14 +707,17 @@ def run_report(df_comp, training_log):
         "",
         "### C. Computational Cost & Efficiency",
         "- **YOLO26n:** 2.50M parameters, 2.89 GFLOPs (lowest compute footprint).",
-        f"- **YOLO26s:** {complexity.get('YOLO26s', {}).get('params_m', 10.01)}M parameters, {complexity.get('YOLO26s', {}).get('gflops', 11.42)} GFLOPs (3.95× compute increase over Nano).",
-        f"- **YOLO26m:** {complexity.get('YOLO26m', {}).get('params_m', 21.90)}M parameters, {complexity.get('YOLO26m', {}).get('gflops', 37.70)} GFLOPs (13.04× compute increase over Nano).",
+        f"- **YOLO26m:** {r26m['Parameters_M']:.2f}M parameters, {r26m['GFLOPs']:.2f} GFLOPs ({r26m['GFLOPs']/2.89:.2f}× compute increase over Nano).",
         "",
         "---",
         "",
-        "## 5. Methodological Limitations",
-        "1. **Unlabeled Target Ground Truth:** The 31,769 OHRC tiles lack human ground-truth labels. Differences in candidate count cannot be mathematically partitioned into true boulder detections versus spurious terrain activations.",
-        "2. **Single Scale Hardware:** Evaluations were conducted on a single 4 GB RTX 3050 GPU, reflecting real-world edge/portable deployment constraints.",
+        "## 5. Methodological Limitations & Comparability Caveats",
+        "1. **Unlabeled Target Ground Truth:** The 31,769 OHRC tiles and 13,906 polar tiles lack human ground-truth labels. Differences in candidate count cannot be mathematically partitioned into true boulder detections versus spurious terrain activations.",
+        "2. **Training Batch Size Allocation (Batch Size 4 vs. Batch Size 8):**",
+        "   - **Controlled Stage-2 Baselines (YOLO26n, YOLOv8n, YOLOv5s):** Trained with batch size 8 on CUDA:0.",
+        "   - **YOLO26m Scaling Experiment:** Due to strict 4.0 GB VRAM limitations on the NVIDIA RTX 3050 Laptop GPU, YOLO26m was resumed and completed with batch size 4 (`batch=4`).",
+        "   - **Scientific Impact:** Batch size alters the stochastic gradient noise and batch normalization statistics during training. While both configurations utilized identical optimizer settings (AdamW, lr0=0.0001, cosine decay to lrf=0.01) over 50 epochs on the identical 4,379/697/262 data split, this difference must be explicitly disclosed. It represents a practical hardware-constrained adaptation rather than an intentional hyperparameter divergence.",
+        "3. **Single Scale Hardware:** Evaluations were conducted on a single 4 GB RTX 3050 GPU, reflecting real-world edge/portable deployment constraints.",
         "",
         "---",
         "",

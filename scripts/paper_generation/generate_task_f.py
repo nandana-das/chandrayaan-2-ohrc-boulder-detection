@@ -18,6 +18,7 @@ OUT_TAB.mkdir(parents=True, exist_ok=True)
 
 MODELS = {
     'YOLO26n': RUNS / 'stage2_yolo26n_combined_hm_cosine/weights/best.pt',
+    'YOLO26m': RUNS / 'stage2_yolo26m_combined_hm_cosine/weights/best.pt',
     'YOLOv8n': RUNS / 'stage2_yolov8n_combined_hm_cosine/weights/best.pt',
     'YOLOv5s': RUNS / 'stage2_yolov5s_combined_hm_cosine/weights/best.pt',
 }
@@ -45,7 +46,14 @@ def main():
         total_params = sum(param.numel() for param in eval_model.parameters())
         layers = len(list(eval_model.modules()))
         
-        arch = 'YOLOv11-Nano (Custom Head)' if name == 'YOLO26n' else ('YOLOv8-Nano' if name == 'YOLOv8n' else 'YOLOv5-Small')
+        if name == 'YOLO26n':
+            arch = 'YOLOv11-Nano (Custom Head)'
+        elif name == 'YOLO26m':
+            arch = 'YOLOv11-Medium (Custom Head)'
+        elif name == 'YOLOv8n':
+            arch = 'YOLOv8-Nano'
+        else:
+            arch = 'YOLOv5-Small'
         
         print(f"{name}: Params = {total_params:,}, GFLOPs = {flops_g:.2f}, Size = {size_mb:.2f} MB, Layers = {layers}")
         

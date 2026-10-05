@@ -57,12 +57,12 @@ examples = [
         'reason': 'Illustrates multiple distinct candidate bounding boxes resolved across a complex surface.'
     },
     {
-        'panel': '(e) Intermediate Field Behavior',
-        'tile': 'ch2_ohr_ncp_20240425T1209509264_d_img_d18_x01920_y42240.png',
-        'model': 'YOLOv5s',
-        'category': 'Intermediate YOLOv5s behavior',
-        'feature_type': 'Moderately dense candidate cluster along morphological bench',
-        'reason': 'Highlights YOLOv5s selective detection behavior avoiding background over-triggering.'
+        'panel': '(e) Scaled Architecture Detection',
+        'tile': 'ch2_ohr_ncp_20190906T2241285714_d_img_gds_x05120_y07040.png',
+        'model': 'YOLO26m',
+        'category': 'Scaled YOLO26m candidate cluster',
+        'feature_type': 'Prominent boulder group detected by scaled YOLO26m',
+        'reason': 'Demonstrates YOLO26m high-confidence boulder localization with restrained activation rate.'
     },
     {
         'panel': '(f) Sparse Conservative Behavior',
@@ -101,12 +101,14 @@ examples = [
 # Load model detection CSVs
 dfs = {
     'YOLO26n': pd.read_csv(RESULTS / 'ohrc_inference/raw_detections_yolo26n.csv'),
+    'YOLO26m': pd.read_csv(RESULTS / 'ohrc_inference/raw_detections_yolo26m.csv'),
     'YOLOv8n': pd.read_csv(RESULTS / 'ohrc_inference/raw_detections_yolov8n.csv'),
     'YOLOv5s': pd.read_csv(RESULTS / 'ohrc_inference/raw_detections_yolov5s.csv'),
 }
 
 box_colors = {
     'YOLO26n': '#00e5ff',  # bright cyan for dark imagery
+    'YOLO26m': '#e040fb',  # bright neon magenta/purple
     'YOLOv8n': '#ff9100',  # amber orange
     'YOLOv5s': '#76ff03',  # lime green
 }

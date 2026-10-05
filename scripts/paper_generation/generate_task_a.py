@@ -9,6 +9,7 @@ OUT_FIG.mkdir(parents=True, exist_ok=True)
 
 csv_files = {
     'YOLO26n': RUNS / 'stage2_yolo26n_combined_hm_cosine' / 'results.csv',
+    'YOLO26m': RUNS / 'stage2_yolo26m_combined_hm_cosine' / 'results.csv',
     'YOLOv8n': RUNS / 'stage2_yolov8n_combined_hm_cosine' / 'results.csv',
     'YOLOv5s': RUNS / 'stage2_yolov5s_combined_hm_cosine' / 'results.csv',
 }
@@ -37,14 +38,15 @@ plt.rcParams.update({
 
 colors = {
     'YOLO26n': '#1f77b4',  # blue
+    'YOLO26m': '#9467bd',  # purple
     'YOLOv8n': '#ff7f0e',  # orange
     'YOLOv5s': '#2ca02c',  # green
 }
 
-# 3x3 Plot: Columns = Models, Rows = Metrics
-fig, axes = plt.subplots(3, 3, figsize=(14, 10), sharex=True)
+# 3x4 Plot: Columns = Models, Rows = Metrics
+fig, axes = plt.subplots(3, 4, figsize=(18, 10), sharex=True)
 
-models = ['YOLO26n', 'YOLOv8n', 'YOLOv5s']
+models = ['YOLO26n', 'YOLO26m', 'YOLOv8n', 'YOLOv5s']
 
 for col_idx, model in enumerate(models):
     df = dfs[model]

@@ -58,6 +58,7 @@ for d in [POLAR_EXTRACT_TMP, POLAR_TILES_USABLE, POLAR_INFERENCE_DIR]:
 RUNS = ROOT / "runs"
 MODELS = {
     'YOLO26n': (YOLO, RUNS / 'stage2_yolo26n_combined_hm_cosine' / 'weights' / 'best.pt'),
+    'YOLO26m': (YOLO, RUNS / 'stage2_yolo26m_combined_hm_cosine' / 'weights' / 'best.pt'),
     'YOLOv8n': (YOLO, RUNS / 'stage2_yolov8n_combined_hm_cosine' / 'weights' / 'best.pt'),
     'YOLOv5s': (YOLO, RUNS / 'stage2_yolov5s_combined_hm_cosine' / 'weights' / 'best.pt'),
     'RT-DETR-L': (RTDETR, RUNS / 'stage2_rtdetr_l_combined_hm' / 'weights' / 'best.pt'),
@@ -242,8 +243,8 @@ def run_stage3_inference():
         print(f"    Weights: {weight_path}")
         raw_csv = POLAR_INFERENCE_DIR / f"raw_detections_{model_name.lower().replace('-', '_')}.csv"
 
-        if model_name == 'RT-DETR-L' and raw_csv.exists():
-            print(f"    [INFO] Reusing existing cached RT-DETR-L detections from: {raw_csv}")
+        if raw_csv.exists():
+            print(f"    [INFO] Reusing existing cached {model_name} detections from: {raw_csv}")
             det_df = pd.read_csv(raw_csv)
             det_count = len(det_df)
             pos_count = det_df["tile"].nunique()

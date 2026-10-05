@@ -29,6 +29,15 @@ records = [
         'Mean_Confidence': 0.2907,
     },
     {
+        'Model': 'YOLO26m',
+        'Model_Status': 'Stage-2 Cosine (Current)',
+        'Detections': 1447,
+        'Positive_Tiles': 309,
+        'Total_Tiles': 13906,
+        'Positive_Tile_Rate_Pct': 2.22,
+        'Mean_Confidence': 0.3057,
+    },
+    {
         'Model': 'YOLOv8n',
         'Model_Status': 'Stage-2 Cosine (Current)',
         'Detections': 71001,
@@ -79,14 +88,15 @@ plt.rcParams.update({
 
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5.5))
 
-models = ['YOLO26n', 'YOLOv8n', 'YOLOv5s', 'RT-DETR-L\n(Hist. Baseline)']
-model_keys = ['YOLO26n', 'YOLOv8n', 'YOLOv5s', 'RT-DETR-L']
+models = ['YOLO26n', 'YOLO26m', 'YOLOv8n', 'YOLOv5s', 'RT-DETR-L\n(Hist. Baseline)']
+model_keys = ['YOLO26n', 'YOLO26m', 'YOLOv8n', 'YOLOv5s', 'RT-DETR-L']
 
 bar_colors = [
     '#1f77b4',  # blue
+    '#9467bd',  # purple
     '#d95f02',  # orange
     '#2ca02c',  # green
-    '#7570b3',  # purple for historical baseline
+    '#7570b3',  # slate purple for historical baseline
 ]
 
 # (a) Positive Tile Rate (%)

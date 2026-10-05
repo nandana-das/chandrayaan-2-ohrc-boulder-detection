@@ -1,0 +1,2 @@
+Model,Condition,mAP50,mAP50-95,Precision,Recall,F1,Best_Epoch
+YOLO26m HM,HM,0.6463,0.2622,0.638,0.6172,0.6275,30

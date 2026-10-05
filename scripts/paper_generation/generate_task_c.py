@@ -46,11 +46,13 @@ selected_tiles = [
 
 # Load detection CSVs
 df26 = pd.read_csv(RESULTS / 'ohrc_inference/raw_detections_yolo26n.csv')
+df26m = pd.read_csv(RESULTS / 'ohrc_inference/raw_detections_yolo26m.csv')
 dfv8 = pd.read_csv(RESULTS / 'ohrc_inference/raw_detections_yolov8n.csv')
 dfv5 = pd.read_csv(RESULTS / 'ohrc_inference/raw_detections_yolov5s.csv')
 
 colors = {
     'YOLO26n': '#0055d4',  # deep blue
+    'YOLO26m': '#7b1fa2',  # deep purple
     'YOLOv8n': '#e65100',  # vibrant orange
     'YOLOv5s': '#1b5e20',  # dark green
 }
@@ -83,11 +85,12 @@ def main():
     print("=" * 60)
     
     n_tiles = len(selected_tiles)
-    fig, axes = plt.subplots(n_tiles, 4, figsize=(16, 4.0 * n_tiles))
+    fig, axes = plt.subplots(n_tiles, 5, figsize=(20, 4.0 * n_tiles))
     
     col_titles = [
         "Unlabeled OHRC Tile (Raw)",
         "YOLO26n Candidates (Sparse)",
+        "YOLO26m Candidates (Scaled)",
         "YOLOv8n Candidates (Dense)",
         "YOLOv5s Candidates (Intermediate)"
     ]
@@ -101,6 +104,7 @@ def main():
         
         # Subsets
         b26 = df26[df26['tile'] == fname]
+        b26m = df26m[df26m['tile'] == fname]
         bv8 = dfv8[dfv8['tile'] == fname]
         bv5 = dfv5[dfv5['tile'] == fname]
         
@@ -120,23 +124,32 @@ def main():
                  fontsize=10, fontweight='bold', bbox=dict(boxstyle='round,pad=0.2', facecolor='#0055d4', alpha=0.85))
         ax1.axis('off')
         
-        # 3. YOLOv8n
+        # 3. YOLO26m
         ax2 = axes[row_idx, 2]
         ax2.imshow(img, cmap='gray')
-        draw_boxes(ax2, bv8, colors['YOLOv8n'])
+        draw_boxes(ax2, b26m, colors['YOLO26m'])
         ax2.set_title(col_titles[2] if row_idx == 0 else "", fontsize=12, fontweight='bold', pad=8)
-        ax2.text(0.03, 0.94, f"N = {len(bv8)}", transform=ax2.transAxes, color='white',
-                 fontsize=10, fontweight='bold', bbox=dict(boxstyle='round,pad=0.2', facecolor='#e65100', alpha=0.85))
+        ax2.text(0.03, 0.94, f"N = {len(b26m)}", transform=ax2.transAxes, color='white',
+                 fontsize=10, fontweight='bold', bbox=dict(boxstyle='round,pad=0.2', facecolor='#7b1fa2', alpha=0.85))
         ax2.axis('off')
         
-        # 4. YOLOv5s
+        # 4. YOLOv8n
         ax3 = axes[row_idx, 3]
         ax3.imshow(img, cmap='gray')
-        draw_boxes(ax3, bv5, colors['YOLOv5s'])
+        draw_boxes(ax3, bv8, colors['YOLOv8n'])
         ax3.set_title(col_titles[3] if row_idx == 0 else "", fontsize=12, fontweight='bold', pad=8)
-        ax3.text(0.03, 0.94, f"N = {len(bv5)}", transform=ax3.transAxes, color='white',
-                 fontsize=10, fontweight='bold', bbox=dict(boxstyle='round,pad=0.2', facecolor='#1b5e20', alpha=0.85))
+        ax3.text(0.03, 0.94, f"N = {len(bv8)}", transform=ax3.transAxes, color='white',
+                 fontsize=10, fontweight='bold', bbox=dict(boxstyle='round,pad=0.2', facecolor='#e65100', alpha=0.85))
         ax3.axis('off')
+        
+        # 5. YOLOv5s
+        ax4 = axes[row_idx, 4]
+        ax4.imshow(img, cmap='gray')
+        draw_boxes(ax4, bv5, colors['YOLOv5s'])
+        ax4.set_title(col_titles[4] if row_idx == 0 else "", fontsize=12, fontweight='bold', pad=8)
+        ax4.text(0.03, 0.94, f"N = {len(bv5)}", transform=ax4.transAxes, color='white',
+                 fontsize=10, fontweight='bold', bbox=dict(boxstyle='round,pad=0.2', facecolor='#1b5e20', alpha=0.85))
+        ax4.axis('off')
 
     plt.tight_layout()
     png_path = OUT_FIG / "fig_cross_model_behavior.png"
