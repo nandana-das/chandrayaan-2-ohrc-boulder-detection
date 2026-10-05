@@ -57,7 +57,7 @@ examples = [
         'reason': 'Illustrates multiple distinct candidate bounding boxes resolved across a complex surface.'
     },
     {
-        'panel': '(e) Scaled Architecture Detection',
+        'panel': '(e) Scaled Architecture Detection (YOLO26m)',
         'tile': 'ch2_ohr_ncp_20190906T2241285714_d_img_gds_x05120_y07040.png',
         'model': 'YOLO26m',
         'category': 'Scaled YOLO26m candidate cluster',
@@ -65,12 +65,12 @@ examples = [
         'reason': 'Demonstrates YOLO26m high-confidence boulder localization with restrained activation rate.'
     },
     {
-        'panel': '(f) Sparse Conservative Behavior',
-        'tile': 'ch2_ohr_ncp_20240425T1406019344_d_img_d18_x01920_y03200.png',
-        'model': 'YOLO26n',
-        'category': 'Sparse YOLO26n behavior',
-        'feature_type': 'Low-incidence regolith terrain with isolated candidate',
-        'reason': 'Shows YOLO26n conservative thresholding detecting only the most distinct rock candidates.'
+        'panel': '(f) Intermediate Scaling Candidate (YOLO26s)',
+        'tile': 'ch2_ohr_ncp_20190906T2241285714_d_img_gds_x05120_y07040.png',
+        'model': 'YOLO26s',
+        'category': 'Scaled YOLO26s candidate cluster',
+        'feature_type': 'Boulder cluster detected by scaled YOLO26s on identical terrain',
+        'reason': 'Demonstrates intermediate YOLO26s capacity localization on identical terrain.'
     },
     {
         'panel': '(g) Dense Texture Response',
@@ -101,6 +101,7 @@ examples = [
 # Load model detection CSVs
 dfs = {
     'YOLO26n': pd.read_csv(RESULTS / 'ohrc_inference/raw_detections_yolo26n.csv'),
+    'YOLO26s': pd.read_csv(RESULTS / 'ohrc_inference/raw_detections_yolo26s.csv'),
     'YOLO26m': pd.read_csv(RESULTS / 'ohrc_inference/raw_detections_yolo26m.csv'),
     'YOLOv8n': pd.read_csv(RESULTS / 'ohrc_inference/raw_detections_yolov8n.csv'),
     'YOLOv5s': pd.read_csv(RESULTS / 'ohrc_inference/raw_detections_yolov5s.csv'),
@@ -108,6 +109,7 @@ dfs = {
 
 box_colors = {
     'YOLO26n': '#00e5ff',  # bright cyan for dark imagery
+    'YOLO26s': '#00e676',  # bright neon mint/green
     'YOLO26m': '#e040fb',  # bright neon magenta/purple
     'YOLOv8n': '#ff9100',  # amber orange
     'YOLOv5s': '#76ff03',  # lime green

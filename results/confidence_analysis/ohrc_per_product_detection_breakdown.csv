@@ -1,49 +1,61 @@
 region,product_id,mean_latitude_deg,model,evaluated_tiles,detection_count,tiles_with_detection,mean_confidence
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20190906T2241285714_d_img_gds,-70.99,YOLO26n,2797,427,104,0.2635
+South Pole (lat ≈ -70°S),ch2_ohr_ncp_20190906T2241285714_d_img_gds,-70.99,YOLO26s,2797,470,137,0.2465
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20190906T2241285714_d_img_gds,-70.99,YOLO26m,2797,33,14,0.2619
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20190906T2241285714_d_img_gds,-70.99,YOLOv8n,2797,56970,2359,0.291
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20190906T2241285714_d_img_gds,-70.99,YOLOv5s,2797,325,165,0.2931
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20190907T0438126359_d_img_g26,-70.95,YOLO26n,2654,102,45,0.2506
+South Pole (lat ≈ -70°S),ch2_ohr_ncp_20190907T0438126359_d_img_g26,-70.95,YOLO26s,2654,122,68,0.237
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20190907T0438126359_d_img_g26,-70.95,YOLO26m,2654,20,15,0.2727
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20190907T0438126359_d_img_g26,-70.95,YOLOv8n,2654,38909,2067,0.2865
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20190907T0438126359_d_img_g26,-70.95,YOLOv5s,2654,148,123,0.2737
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20240425T1012478407_d_img_d18,-69.4,YOLO26n,2709,1019,290,0.2572
+South Pole (lat ≈ -70°S),ch2_ohr_ncp_20240425T1012478407_d_img_d18,-69.4,YOLO26s,2709,305,207,0.247
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20240425T1012478407_d_img_d18,-69.4,YOLO26m,2709,15,8,0.2572
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20240425T1012478407_d_img_d18,-69.4,YOLOv8n,2709,52190,2132,0.2991
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20240425T1012478407_d_img_d18,-69.4,YOLOv5s,2709,821,460,0.2868
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20240425T1209509264_d_img_d18,-69.43,YOLO26n,2749,465,187,0.2535
+South Pole (lat ≈ -70°S),ch2_ohr_ncp_20240425T1209509264_d_img_d18,-69.43,YOLO26s,2749,262,190,0.2459
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20240425T1209509264_d_img_d18,-69.43,YOLO26m,2749,9,6,0.2596
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20240425T1209509264_d_img_d18,-69.43,YOLOv8n,2749,38230,1947,0.2969
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20240425T1209509264_d_img_d18,-69.43,YOLOv5s,2749,760,484,0.2799
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20240425T1406019344_d_img_d18,-69.42,YOLO26n,2759,1699,420,0.257
+South Pole (lat ≈ -70°S),ch2_ohr_ncp_20240425T1406019344_d_img_d18,-69.42,YOLO26s,2759,442,270,0.2537
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20240425T1406019344_d_img_d18,-69.42,YOLO26m,2759,5,4,0.2481
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20240425T1406019344_d_img_d18,-69.42,YOLOv8n,2759,76134,2394,0.3026
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20240425T1406019344_d_img_d18,-69.42,YOLOv5s,2759,936,520,0.2834
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20240425T1603031918_d_img_d18,-69.41,YOLO26n,2640,270,130,0.2501
+South Pole (lat ≈ -70°S),ch2_ohr_ncp_20240425T1603031918_d_img_d18,-69.41,YOLO26s,2640,382,221,0.2478
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20240425T1603031918_d_img_d18,-69.41,YOLO26m,2640,11,3,0.2586
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20240425T1603031918_d_img_d18,-69.41,YOLOv8n,2640,29938,1790,0.2961
 South Pole (lat ≈ -70°S),ch2_ohr_ncp_20240425T1603031918_d_img_d18,-69.41,YOLOv5s,2640,708,482,0.2753
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250516T0948068899_d_img_d18,60.46,YOLO26n,2677,95,88,0.245
+Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250516T0948068899_d_img_d18,60.46,YOLO26s,2677,1333,116,0.2835
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250516T0948068899_d_img_d18,60.46,YOLO26m,2677,148,49,0.2758
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250516T0948068899_d_img_d18,60.46,YOLOv8n,2677,8994,197,0.3261
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250516T0948068899_d_img_d18,60.46,YOLOv5s,2677,3408,222,0.3323
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250516T1145499313_d_img_d18,60.45,YOLO26n,2676,57,56,0.2407
+Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250516T1145499313_d_img_d18,60.45,YOLO26s,2676,1080,107,0.2952
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250516T1145499313_d_img_d18,60.45,YOLO26m,2676,121,44,0.2924
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250516T1145499313_d_img_d18,60.45,YOLOv8n,2676,8188,190,0.3266
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250516T1145499313_d_img_d18,60.45,YOLOv5s,2676,3142,217,0.3387
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250516T1342347288_d_img_d18,60.43,YOLO26n,2679,96,90,0.2395
+Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250516T1342347288_d_img_d18,60.43,YOLO26s,2679,2571,148,0.3
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250516T1342347288_d_img_d18,60.43,YOLO26m,2679,107,44,0.2693
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250516T1342347288_d_img_d18,60.43,YOLOv8n,2679,12403,208,0.3342
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250516T1342347288_d_img_d18,60.43,YOLOv5s,2679,5551,246,0.3405
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250516T1540191774_d_img_d18,60.47,YOLO26n,2679,92,82,0.2406
+Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250516T1540191774_d_img_d18,60.47,YOLO26s,2679,1663,141,0.2951
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250516T1540191774_d_img_d18,60.47,YOLO26m,2679,205,71,0.2843
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250516T1540191774_d_img_d18,60.47,YOLOv8n,2679,9883,226,0.3397
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250516T1540191774_d_img_d18,60.47,YOLOv5s,2679,4610,232,0.356
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250612T2031048828_d_img_d18,60.59,YOLO26n,2375,347,293,0.2454
+Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250612T2031048828_d_img_d18,60.59,YOLO26s,2375,2620,198,0.3191
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250612T2031048828_d_img_d18,60.59,YOLO26m,2375,259,80,0.2814
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250612T2031048828_d_img_d18,60.59,YOLOv8n,2375,12727,295,0.3514
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250612T2031048828_d_img_d18,60.59,YOLOv5s,2375,2173,380,0.3205
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250612T2229094979_d_img_d18,60.62,YOLO26n,2375,415,349,0.2497
+Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250612T2229094979_d_img_d18,60.62,YOLO26s,2375,2852,247,0.3087
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250612T2229094979_d_img_d18,60.62,YOLO26m,2375,551,105,0.316
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250612T2229094979_d_img_d18,60.62,YOLOv8n,2375,8861,324,0.3557
 Equatorial (lat ≈ +60°N),ch2_ohr_ncp_20250612T2229094979_d_img_d18,60.62,YOLOv5s,2375,1870,365,0.3242

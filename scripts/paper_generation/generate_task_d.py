@@ -22,6 +22,7 @@ OUT_TAB.mkdir(parents=True, exist_ok=True)
 
 MODELS = {
     'YOLO26n': RUNS / 'stage2_yolo26n_combined_hm_cosine/weights/best.pt',
+    'YOLO26s': RUNS / 'stage2_yolo26s_combined_hm_cosine/weights/best.pt',
     'YOLO26m': RUNS / 'stage2_yolo26m_combined_hm_cosine/weights/best.pt',
     'YOLOv8n': RUNS / 'stage2_yolov8n_combined_hm_cosine/weights/best.pt',
     'YOLOv5s': RUNS / 'stage2_yolov5s_combined_hm_cosine/weights/best.pt',
@@ -29,6 +30,7 @@ MODELS = {
 
 colors = {
     'YOLO26n': '#1f77b4',
+    'YOLO26s': '#17becf',
     'YOLO26m': '#9467bd',
     'YOLOv8n': '#d95f02',
     'YOLOv5s': '#2ca02c',

@@ -58,6 +58,7 @@ for d in [POLAR_EXTRACT_TMP, POLAR_TILES_USABLE, POLAR_INFERENCE_DIR]:
 RUNS = ROOT / "runs"
 MODELS = {
     'YOLO26n': (YOLO, RUNS / 'stage2_yolo26n_combined_hm_cosine' / 'weights' / 'best.pt'),
+    'YOLO26s': (YOLO, RUNS / 'stage2_yolo26s_combined_hm_cosine' / 'weights' / 'best.pt'),
     'YOLO26m': (YOLO, RUNS / 'stage2_yolo26m_combined_hm_cosine' / 'weights' / 'best.pt'),
     'YOLOv8n': (YOLO, RUNS / 'stage2_yolov8n_combined_hm_cosine' / 'weights' / 'best.pt'),
     'YOLOv5s': (YOLO, RUNS / 'stage2_yolov5s_combined_hm_cosine' / 'weights' / 'best.pt'),

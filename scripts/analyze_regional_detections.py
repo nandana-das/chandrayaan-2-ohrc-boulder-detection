@@ -35,9 +35,10 @@ EQUATORIAL_PRODUCTS = {
     'ch2_ohr_ncp_20250612T2229094979_d_img_d18': 60.62,
 }
 
-MODELS = ['yolo26n', 'yolo26m', 'yolov8n', 'yolov5s']
+MODELS = ['yolo26n', 'yolo26s', 'yolo26m', 'yolov8n', 'yolov5s']
 MODEL_DISPLAY = {
     'yolo26n': 'YOLO26n',
+    'yolo26s': 'YOLO26s',
     'yolo26m': 'YOLO26m',
     'yolov8n': 'YOLOv8n',
     'yolov5s': 'YOLOv5s'
@@ -150,14 +151,15 @@ def main():
     plt.rcParams['font.family'] = 'sans-serif'
     plt.rcParams['font.sans-serif'] = ['DejaVu Sans', 'Arial', 'Helvetica']
     
-    fig, ax = plt.subplots(figsize=(9, 6), dpi=300)
+    fig, ax = plt.subplots(figsize=(10, 6), dpi=300)
     
     x = np.arange(len(regions))  # label locations
-    width = 0.18  # bar width
+    width = 0.15  # bar width
     
     # Custom curated palette
     colors = {
         'YOLO26n': '#1f77b4',  # Deep Steel Blue
+        'YOLO26s': '#17becf',  # Cyan / Teal
         'YOLO26m': '#9467bd',  # Purple
         'YOLOv8n': '#ff7f0e',  # Vibrant Coral/Orange
         'YOLOv5s': '#2ca02c'   # Forest Emerald Green
@@ -170,7 +172,7 @@ def main():
         mean_confs = sub['mean_confidence'].values
         pos_tiles = sub['tiles_with_detection'].values
         
-        offset = (i - 1.5) * width
+        offset = (i - 2.0) * width
         rects = ax.bar(
             x + offset, 
             counts, 

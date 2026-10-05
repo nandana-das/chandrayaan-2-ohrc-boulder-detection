@@ -1,5 +1,6 @@
 region,model,detection_count,tiles_with_detection,total_evaluated_tiles,tile_detection_rate_pct,mean_confidence,std_confidence,detections_per_positive_tile
 Ultra-Deep South Pole (lat ≤ -89.5°S),YOLO26n,10085,1173,13906,8.44,0.2907,0.082,8.6
+Ultra-Deep South Pole (lat ≤ -89.5°S),YOLO26s,8128,2124,13906,15.27,0.2699,0.0708,3.83
 Ultra-Deep South Pole (lat ≤ -89.5°S),YOLO26m,1447,309,13906,2.22,0.3057,0.0924,4.68
 Ultra-Deep South Pole (lat ≤ -89.5°S),YOLOv8n,71001,6047,13906,43.48,0.2959,0.088,11.74
 Ultra-Deep South Pole (lat ≤ -89.5°S),YOLOv5s,7202,1779,13906,12.79,0.3214,0.107,4.05

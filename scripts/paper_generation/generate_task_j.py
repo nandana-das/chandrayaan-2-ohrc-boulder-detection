@@ -29,6 +29,15 @@ records = [
         'Mean_Confidence': 0.2907,
     },
     {
+        'Model': 'YOLO26s',
+        'Model_Status': 'Stage-2 Cosine (Current)',
+        'Detections': 8128,
+        'Positive_Tiles': 2124,
+        'Total_Tiles': 13906,
+        'Positive_Tile_Rate_Pct': 15.27,
+        'Mean_Confidence': 0.2699,
+    },
+    {
         'Model': 'YOLO26m',
         'Model_Status': 'Stage-2 Cosine (Current)',
         'Detections': 1447,
@@ -80,19 +89,20 @@ plt.rcParams.update({
     'font.size': 11,
     'axes.labelsize': 12,
     'axes.titlesize': 13,
-    'xtick.labelsize': 11,
+    'xtick.labelsize': 10,
     'ytick.labelsize': 10,
     'legend.fontsize': 10,
     'grid.alpha': 0.5,
 })
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5.5))
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 5.5))
 
-models = ['YOLO26n', 'YOLO26m', 'YOLOv8n', 'YOLOv5s', 'RT-DETR-L\n(Hist. Baseline)']
-model_keys = ['YOLO26n', 'YOLO26m', 'YOLOv8n', 'YOLOv5s', 'RT-DETR-L']
+models = ['YOLO26n', 'YOLO26s', 'YOLO26m', 'YOLOv8n', 'YOLOv5s', 'RT-DETR-L\n(Hist. Baseline)']
+model_keys = ['YOLO26n', 'YOLO26s', 'YOLO26m', 'YOLOv8n', 'YOLOv5s', 'RT-DETR-L']
 
 bar_colors = [
     '#1f77b4',  # blue
+    '#17becf',  # cyan / teal
     '#9467bd',  # purple
     '#d95f02',  # orange
     '#2ca02c',  # green

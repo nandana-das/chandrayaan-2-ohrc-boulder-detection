@@ -1,9 +1,11 @@
 Region,Model,Detections,Positive_Tiles,Total_Tiles,Positive_Tile_Rate_Pct
 South Pole,YOLO26n,3982,1176,16308,7.21
+South Pole,YOLO26s,1983,1093,16308,6.7
 South Pole,YOLO26m,93,50,16308,0.31
 South Pole,YOLOv8n,292371,12689,16308,77.81
 South Pole,YOLOv5s,3698,2234,16308,13.7
 Equatorial / Northern,YOLO26n,1102,958,15461,6.2
+Equatorial / Northern,YOLO26s,12119,957,15461,6.19
 Equatorial / Northern,YOLO26m,1391,393,15461,2.54
 Equatorial / Northern,YOLOv8n,61056,1440,15461,9.31
 Equatorial / Northern,YOLOv5s,20754,1662,15461,10.75

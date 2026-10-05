@@ -26,6 +26,14 @@ data = [
     },
     {
         'Region': 'South Pole',
+        'Model': 'YOLO26s',
+        'Detections': 1983,
+        'Positive_Tiles': 1093,
+        'Total_Tiles': 16308,
+        'Positive_Tile_Rate_Pct': 6.70,
+    },
+    {
+        'Region': 'South Pole',
         'Model': 'YOLO26m',
         'Detections': 93,
         'Positive_Tiles': 50,
@@ -55,6 +63,14 @@ data = [
         'Positive_Tiles': 958,
         'Total_Tiles': 15461,
         'Positive_Tile_Rate_Pct': 6.20,
+    },
+    {
+        'Region': 'Equatorial / Northern',
+        'Model': 'YOLO26s',
+        'Detections': 12119,
+        'Positive_Tiles': 957,
+        'Total_Tiles': 15461,
+        'Positive_Tile_Rate_Pct': 6.19,
     },
     {
         'Region': 'Equatorial / Northern',
@@ -102,15 +118,16 @@ plt.rcParams.update({
     'grid.alpha': 0.5,
 })
 
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5.5))
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 5.5))
 
 regions = ['South Pole', 'Equatorial / Northern']
-models = ['YOLO26n', 'YOLO26m', 'YOLOv8n', 'YOLOv5s']
+models = ['YOLO26n', 'YOLO26s', 'YOLO26m', 'YOLOv8n', 'YOLOv5s']
 x = np.arange(len(regions))
-width = 0.18
+width = 0.15
 
 colors = {
     'YOLO26n': '#1f77b4',
+    'YOLO26s': '#17becf',
     'YOLO26m': '#9467bd',
     'YOLOv8n': '#d95f02',
     'YOLOv5s': '#2ca02c',
@@ -120,7 +137,7 @@ colors = {
 for i, m in enumerate(models):
     sub = df[df['Model'] == m]
     rates = [sub[sub['Region'] == r]['Positive_Tile_Rate_Pct'].values[0] for r in regions]
-    offset = (i - 1.5) * width
+    offset = (i - 2.0) * width
     rects = ax1.bar(x + offset, rates, width, label=m, color=colors[m], alpha=0.85, edgecolor='black', lw=0.6)
     for rect in rects:
         h = rect.get_height()
@@ -138,7 +155,7 @@ ax1.legend(title="Model", frameon=True, facecolor='white', framealpha=0.9)
 for i, m in enumerate(models):
     sub = df[df['Model'] == m]
     counts = [sub[sub['Region'] == r]['Detections'].values[0] for r in regions]
-    offset = (i - 1.5) * width
+    offset = (i - 2.0) * width
     rects = ax2.bar(x + offset, counts, width, label=m, color=colors[m], alpha=0.85, edgecolor='black', lw=0.6)
     for rect in rects:
         h = rect.get_height()
@@ -150,7 +167,7 @@ ax2.set_title("(b) Candidate Count by Region", fontweight='bold', pad=10)
 ax2.set_yscale('log')
 ax2.set_xticks(x)
 ax2.set_xticklabels(regions, fontweight='bold')
-ax2.set_ylim(500, 1000000)
+ax2.set_ylim(50, 1000000)
 ax2.legend(title="Model", frameon=True, facecolor='white', framealpha=0.9)
 
 plt.tight_layout()

@@ -4,6 +4,8 @@
 **Repository:** `nandana-das/chandrayaan-2-ohrc-boulder-detection`  
 **Authoritative Stage-2 Models:**
 - `runs/stage2_yolo26n_combined_hm_cosine/weights/best.pt`
+- `runs/stage2_yolo26s_combined_hm_cosine/weights/best.pt`
+- `runs/stage2_yolo26m_combined_hm_cosine/weights/best.pt`
 - `runs/stage2_yolov8n_combined_hm_cosine/weights/best.pt`
 - `runs/stage2_yolov5s_combined_hm_cosine/weights/best.pt`
 
@@ -186,32 +188,32 @@ The following analyses are **unsupported or scientifically invalid** with curren
 
 ---
 
-## Section G: YOLO26m Model Capacity Scaling Experiment Audit & Integration
+## Section G: Controlled YOLO26 Model Scaling Suite Audit & Integration (YOLO26n → YOLO26s → YOLO26m)
 
 **Date:** 2026-10-05  
-**Context:** Empirical evaluation of detector capacity scaling within the YOLO26 architectural family, adding **YOLO26m** (Medium, 21.77M parameters) to the controlled Stage-2 baseline suite (**YOLO26n**, **YOLOv8n**, **YOLOv5s**).
+**Context:** Controlled empirical evaluation of detector capacity scaling across the YOLO26 architectural family (**YOLO26n** [2.50M params] $\rightarrow$ **YOLO26s** [9.95M params] $\rightarrow$ **YOLO26m** [21.77M params]) integrated alongside the external Stage-2 baselines (**YOLOv8n** and **YOLOv5s**).
 
 ### 1. Existing State vs. Newly Evaluated
-- **Pre-existing Artifacts in Repository:**
-  - Checkpoint: `runs/stage2_yolo26m_combined_hm_cosine/weights/best.pt`
-  - Training metrics log: `runs/stage2_yolo26m_combined_hm_cosine/results.csv` (50 epochs, best epoch 30, val mAP50 = 0.5898)
-  - Training arguments: `runs/stage2_yolo26m_combined_hm_cosine/args.yaml`
-  - Model weights were strictly preserved; no retraining was performed.
-- **Newly Executed Empirical Evaluations:**
+- **Pre-existing / Authoritative Artifacts in Repository:**
+  - YOLO26m Checkpoint: `runs/stage2_yolo26m_combined_hm_cosine/weights/best.pt` (preserved untouched, 50 epochs, best epoch 30, mAP50 = 0.6463)
+  - YOLO26s Training & Checkpoint: `runs/stage2_yolo26s_combined_hm_cosine/weights/best.pt` (50 epochs, best epoch 46, validation fitness = 0.2567, training duration 212.0 min, batch size 8)
+  - Stage-2 Baselines: YOLO26n, YOLOv8n, and YOLOv5s checkpoints preserved strictly without alteration.
+- **Executed Empirical Evaluations for YOLO26s:**
   - Source held-out test evaluation on the untouched test split (262 images, 7,268 ground-truth annotations).
   - Target-domain inference across all 31,769 usable OHRC tiles at detection threshold $\tau = 0.20$.
   - Target-domain inference on the 13,906 usable ultra-deep polar tiles across 20 calibrated products.
   - Regional detection rate breakdown across South Pole (16,308 tiles) and Equatorial/Northern (15,461 tiles).
-  - Parameter profiling (THOP FLOPs/params) and GPU inference latency benchmark (100 tiles, RTX 3050 Laptop GPU).
+  - Parameter profiling (THOP FLOPs/params: 9.949M params, 11.25 GFLOPs, 19.37 MB) and GPU inference latency benchmark (100 tiles, RTX 3050 Laptop GPU).
   - Full regeneration and updating of all paper figures (`fig_training_curves`, `fig_ohrc_qualitative_detections`, `fig_cross_model_behavior`, `fig_test_pr_curves`, `fig_ohrc_confidence_distributions`, `fig_regional_detection_rates`, `fig_ultradeep_polar`, and dedicated scaling figures).
 
 ### 2. Exact Checkpoint Paths & Artifact References
 | Model | Role | Checkpoint Path | Architecture Graph |
 | :--- | :--- | :--- | :--- |
-| **YOLO26m HM** | Scaling Experiment | `runs/stage2_yolo26m_combined_hm_cosine/weights/best.pt` | YOLO26m (Medium, 21.774M params) |
-| **YOLO26n HM** | Controlled Baseline | `runs/stage2_yolo26n_combined_hm_cosine/weights/best.pt` | YOLO26n (Nano, 2.504M params) |
-| **YOLOv8n HM** | Controlled Baseline | `runs/stage2_yolov8n_combined_hm_cosine/weights/best.pt` | YOLOv8n (Nano, 3.011M params) |
-| **YOLOv5s HM** | Controlled Baseline | `runs/stage2_yolov5s_combined_hm_cosine/weights/best.pt` | YOLOv5s (Small, 9.123M params) |
+| **YOLO26n HM** | Scaling Base (Nano) | `runs/stage2_yolo26n_combined_hm_cosine/weights/best.pt` | YOLO26n (Nano, 2.504M params) |
+| **YOLO26s HM** | Scaling Step (Small) | `runs/stage2_yolo26s_combined_hm_cosine/weights/best.pt` | YOLO26s (Small, 9.949M params) |
+| **YOLO26m HM** | Scaling Apex (Medium) | `runs/stage2_yolo26m_combined_hm_cosine/weights/best.pt` | YOLO26m (Medium, 21.774M params) |
+| **YOLOv8n HM** | Controlled External Baseline | `runs/stage2_yolov8n_combined_hm_cosine/weights/best.pt` | YOLOv8n (Nano, 3.011M params) |
+| **YOLOv5s HM** | Controlled External Baseline | `runs/stage2_yolov5s_combined_hm_cosine/weights/best.pt` | YOLOv5s (Small, 9.123M params) |
 | **RT-DETR-L** | Historical Baseline | Historical pre-Stage 2 run (archived) | RT-DETR-L (Historical reference only) |
 
 ### 3. Exact Datasets & Split Partitions
@@ -228,19 +230,20 @@ The following analyses are **unsupported or scientifically invalid** with curren
 
 ### 4. Exact Execution Commands
 - **Test Set Evaluation:** `python scripts/evaluate_test_split.py`
-- **Target OHRC Full Inference:** `python scripts/infer_ohrc.py --model yolo26m`
+- **Target OHRC Full Inference:** `python scripts/infer_ohrc.py --model yolo26s`
 - **Ultra-Deep Polar Inference:** `python scripts/process_polar_batch.py`
 - **Regional Analysis:** `python scripts/analyze_regional_detections.py`
 - **Complexity Profiling:** `python scripts/paper_generation/generate_task_f.py`
 - **GPU Latency Benchmark:** `python scripts/paper_generation/generate_task_g.py`
-- **Scaling Integration:** `python scripts/experiments/run_yolo26_scale.py --model yolo26m --step all`
+- **Scaling Integration:** `python scripts/experiments/run_yolo26_scale.py --step all`
 
-### 5. Consolidated Four-Model Numerical Results
+### 5. Consolidated Five-Model Numerical Results
 
 #### A. Held-Out Source-Domain Test Performance (262 images, 7,268 instances)
 | Model | Peak Val Epoch | Precision | Recall | F1 Score | mAP@0.5 | mAP@0.5:0.95 |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | **YOLO26m HM** | 30 | **0.6380** | **0.6172** | **0.6275** | **0.6463** | **0.2622** |
+| **YOLO26s HM** | 46 | 0.6260 | 0.5691 | 0.5962 | 0.6023 | 0.2308 |
 | **YOLOv5s HM** | 35 | 0.6108 | 0.5499 | 0.5788 | 0.5737 | 0.2121 |
 | **YOLO26n HM** | 41 | 0.5873 | 0.5069 | 0.5442 | 0.5292 | 0.1896 |
 | **YOLOv8n HM** | 33 | 0.5469 | 0.4798 | 0.5111 | 0.4813 | 0.1671 |
@@ -250,6 +253,7 @@ The following analyses are **unsupported or scientifically invalid** with curren
 | :--- | :---: | :---: | :---: | :---: |
 | **YOLO26m HM** | 1,484 | 443 | 1.39% | 0.293 ± 0.088 |
 | **YOLO26n HM** | 5,084 | 2,134 | 6.72% | 0.254 ± 0.055 |
+| **YOLO26s HM** | 14,102 | 2,050 | 6.45% | 0.295 ± 0.087 |
 | **YOLOv5s HM** | 24,452 | 3,896 | 12.26% | 0.330 ± 0.106 |
 | **YOLOv8n HM** | 353,427 | 14,129 | 44.47% | 0.304 ± 0.093 |
 
@@ -257,8 +261,9 @@ The following analyses are **unsupported or scientifically invalid** with curren
 | Model | Candidate Detections | Positive Tiles | Positive Tile Rate (%) | Mean Confidence | Detections / Pos Tile |
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | **YOLO26m HM** | 1,447 | 309 | 2.22% | 0.3057 ± 0.0924 | 4.68 |
-| **YOLO26n HM** | 10,085 | 1,174 | 8.44% | 0.2546 ± 0.0573 | 8.59 |
 | **YOLOv5s HM** | 7,202 | 1,779 | 12.79% | 0.2854 ± 0.0760 | 4.05 |
+| **YOLO26s HM** | 8,128 | 2,124 | 15.27% | 0.2699 ± 0.0708 | 3.83 |
+| **YOLO26n HM** | 10,085 | 1,174 | 8.44% | 0.2546 ± 0.0573 | 8.59 |
 | **YOLOv8n HM** | 71,001 | 6,047 | 43.48% | 0.2862 ± 0.0792 | 11.74 |
 | *RT-DETR-L (Historical)* | *532,844* | *11,664* | *83.88%* | *0.4287 ± 0.1587* | *45.68* |
 
@@ -267,6 +272,8 @@ The following analyses are **unsupported or scientifically invalid** with curren
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
 | **YOLO26m HM** | South Pole | 16,308 | 93 | 50 | 0.31% | 0.2621 ± 0.0555 |
 | **YOLO26m HM** | Equatorial / Northern | 15,461 | 1,391 | 393 | 2.54% | 0.2950 ± 0.0876 |
+| **YOLO26s HM** | South Pole | 16,308 | 1,983 | 1,093 | 6.70% | 0.2478 ± 0.0490 |
+| **YOLO26s HM** | Equatorial / Northern | 15,461 | 12,119 | 957 | 6.19% | 0.3032 ± 0.0893 |
 | **YOLO26n HM** | South Pole | 16,308 | 3,982 | 1,176 | 7.21% | 0.2567 ± 0.0583 |
 | **YOLO26n HM** | Equatorial / Northern | 15,461 | 1,102 | 958 | 6.20% | 0.2458 ± 0.0468 |
 | **YOLOv5s HM** | South Pole | 16,308 | 3,698 | 2,234 | 13.70% | 0.2824 ± 0.0764 |
@@ -277,15 +284,23 @@ The following analyses are **unsupported or scientifically invalid** with curren
 #### E. Model Complexity and Edge Hardware Latency (NVIDIA RTX 3050 Laptop GPU)
 | Model | Parameters (M) | GFLOPs (640×640) | Checkpoint Size (MB) | Mean Latency (ms) | Median Latency (ms) | Throughput (FPS) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **YOLO26n** | 2.504 | 2.89 | 5.14 | 52.28 | 53.36 | 19.1 |
-| **YOLOv8n** | 3.011 | 4.10 | 5.96 | 30.50 | 31.57 | 32.8 |
-| **YOLOv5s** | 9.123 | 12.02 | 17.66 | 41.88 | 42.02 | 23.9 |
-| **YOLO26m** | 21.774 | 37.36 | 41.98 | 42.69 | 42.33 | 23.4 |
+| **YOLO26n** | 2.504 | 2.89 | 5.14 | 70.26 | 70.75 | 14.2 |
+| **YOLO26s** | 9.949 | 11.25 | 19.37 | 54.52 | 56.02 | 18.3 |
+| **YOLO26m** | 21.774 | 37.36 | 41.98 | 59.96 | 61.02 | 16.7 |
+| **YOLOv8n** | 3.011 | 4.10 | 5.96 | 50.74 | 46.96 | 19.7 |
+| **YOLOv5s** | 9.123 | 12.02 | 17.66 | 45.19 | 46.40 | 22.1 |
+
+#### F. Controlled YOLO26 Scaling Triad (YOLO26n → YOLO26s → YOLO26m)
+| Scaling Transition | Capacity Change | mAP@0.5 Delta | F1 Delta | Target Positive Tile Rate Delta | Compute Multiplier |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **YOLO26n $\rightarrow$ YOLO26s** | 2.50M $\rightarrow$ 9.95M (+298%) | **+0.0731** (0.5292 $\rightarrow$ 0.6023) | **+0.0520** (0.5442 $\rightarrow$ 0.5962) | 6.72% $\rightarrow$ 6.45% (-0.27 pp) | 3.89× GFLOPs |
+| **YOLO26s $\rightarrow$ YOLO26m** | 9.95M $\rightarrow$ 21.77M (+119%) | **+0.0440** (0.6023 $\rightarrow$ 0.6463) | **+0.0313** (0.5962 $\rightarrow$ 0.6275) | 6.45% $\rightarrow$ 1.39% (-5.06 pp) | 3.32× GFLOPs |
+| **Full YOLO26 Scaling** | 2.50M $\rightarrow$ 21.77M (+770%) | **+0.1171** (0.5292 $\rightarrow$ 0.6463) | **+0.0833** (0.5442 $\rightarrow$ 0.6275) | 6.72% $\rightarrow$ 1.39% (-5.33 pp) | 12.93× GFLOPs |
 
 ### 6. Methodological Differences & Comparability Caveats
 1. **Training Batch Size Allocation (`batch=4` vs. `batch=8`):**
-   - **Baseline Models (YOLO26n, YOLOv8n, YOLOv5s):** Trained with batch size 8 on CUDA:0.
-   - **YOLO26m:** Due to strict 4.0 GB VRAM hardware limitations on the NVIDIA GeForce RTX 3050 Laptop GPU, training was resumed and completed with batch size 4 (`batch=4`).
+   - **Controlled Stage-2 Baselines (YOLO26n, YOLOv8n, YOLOv5s) and YOLO26s:** Trained with batch size 8 (`batch=8`) on CUDA:0. YOLO26s comfortably fits in the 4.0 GB VRAM limit of the NVIDIA RTX 3050 Laptop GPU at batch 8.
+   - **YOLO26m:** Due to strict 4.0 GB VRAM hardware limitations on the NVIDIA GeForce RTX 3050 Laptop GPU, YOLO26m was resumed and completed with batch size 4 (`batch=4`).
    - **Comparability Assessment:** While learning rate schedule (AdamW, $\text{lr}_0=10^{-4}$, cosine decay to $\text{lrf}=0.01$), total epochs (50), input resolution (640×640), and dataset splits (4,379 / 697 / 262) were identical, the smaller batch size results in increased gradient stochasticity per step and different batch normalization accumulation dynamics. This represents a pragmatic hardware constraint rather than an experimental variable, and must be explicitly noted in comparative discussions.
 2. **Unlabeled Target-Domain Framing:**
    - Because both the 31,769 usable OHRC tiles and 13,906 ultra-deep polar tiles lack ground-truth annotations, target-domain metrics reflect candidate activation density, operating frequency, and confidence calibration rather than verified true/false positive rates.
