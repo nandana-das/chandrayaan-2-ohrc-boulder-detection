@@ -13,7 +13,7 @@ tqdm>=4.65
 pandas>=2.0
 scipy>=1.11
 # Domain adaptation pipeline
-ultralytics>=8.0
+ultralytics==8.4.171
 requests>=2.31
 pyyaml>=6.0
 # Web scraping (scrape_calibrated_catalog.py)
