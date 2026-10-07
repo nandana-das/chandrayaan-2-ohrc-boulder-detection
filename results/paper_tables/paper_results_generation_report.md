@@ -303,7 +303,7 @@ The following analyses are **unsupported or scientifically invalid** with curren
      - For models with physical `batch = 8` (YOLO26n, YOLO26s, YOLOv8n, YOLOv5s): accumulation steps = 8 $\implies 8 \times 8 = \mathbf{64}$ images per optimizer step.
      - For YOLO26m with physical `batch = 4`: accumulation steps = 16 $\implies 4 \times 16 = \mathbf{64}$ images per optimizer step.
    - **Effective Optimizer Batch Parity:** All five models updated weights at the exact same gradient frequency with an **identical effective optimizer batch size of 64 images**.
-   - **Physical Device Mini-Batch Allocation:** Physical batch size was set to 4 for YOLO26m strictly due to hardware constraints on the 4.0 GB VRAM NVIDIA RTX 3050 Laptop GPU (where physical batch 8 required 4.70 GB VRAM and caused memory swapping/OOM). Physical batch differences only affect forward-pass batch normalization statistics.
+   - **Physical Device Mini-Batch Allocation:** The YOLO26m run used a smaller physical mini-batch because of the 4-GB GPU memory constraint; the framework's accumulation schedule maintained an effective optimizer batch size of 64. The physical mini-batch difference may still affect batch-dependent behavior.
 2. **Unlabeled Target-Domain Framing:**
    - Because both the 31,769 usable OHRC tiles and 13,906 ultra-deep polar tiles lack ground-truth annotations, target-domain metrics reflect candidate activation density, operating frequency, and confidence calibration rather than verified true/false positive rates.
 3. **Regional Disparity Interpretation:**

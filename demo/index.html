@@ -920,7 +920,7 @@
       <div class="hero-pretitle">Mission Presentation & Research Showcase</div>
       <h1 class="hero-title">Lunar Rockfall & Boulder Detection from Chandrayaan-2 OHRC Imagery</h1>
       <p class="hero-desc">
-        A domain-adaptive transfer learning pipeline transferring knowledge from labeled NASA LROC NAC source domain imagery to unlabeled Chandrayaan-2 OHRC target domain imagery via multi-reference histogram matching — without requiring any manual OHRC annotations.
+        A domain-adaptive transfer learning pipeline transferring knowledge from labeled NASA LROC NAC source domain imagery to unlabeled Chandrayaan-2 OHRC target domain imagery via 20-tile averaged-reference histogram matching — without requiring any manual OHRC annotations.
       </p>
       <div class="meta-bar">
         <div class="meta-item">👥 Authors: <strong>Nandana Narayan Das, Gowri Kannan</strong></div>
@@ -949,7 +949,7 @@
       <div class="stat-card">
         <div class="stat-label">Domain Adaptation Gain</div>
         <div class="stat-val">3.1× <span>multiplier</span></div>
-        <div class="stat-sub">Multi-Ref HM vs Single-Ref Baseline (+9.1% mAP)</div>
+        <div class="stat-sub">20-Tile Averaged HM vs Single-Ref Baseline (+9.1% mAP)</div>
       </div>
     </div>
 
@@ -987,7 +987,7 @@
         <!-- Stage 3 (Highlighted) -->
         <div class="stage-card highlight">
           <div class="stage-num">Stage 3 • Core Contribution</div>
-          <div class="stage-title">Multi-Reference Histogram Matching</div>
+          <div class="stage-title">20-Tile Averaged-Reference Histogram Matching</div>
           <div class="stage-desc">
             20-tile averaged OHRC photometric reference profile. Specification applied across all training images to eliminate sensor, albedo, and phase-angle domain shifts.
           </div>
@@ -1435,7 +1435,7 @@
           </div>
 
           <div class="divergence-callout">
-            <strong>Key Presentation Finding:</strong> Transfer learning without target domain labels is fundamentally governed by <em>illumination geometry</em>. Multi-Reference Histogram Matching successfully equalized the first-order sensor response, but polar low-angle shadow physics remains the most reliable regime for automated rockfall classification.
+            <strong>Key Presentation Finding:</strong> Transfer learning without target domain labels is fundamentally governed by <em>illumination geometry</em>. 20-tile averaged-reference histogram matching successfully equalized the first-order sensor response, but polar low-angle shadow physics remains the most reliable regime for automated rockfall classification.
           </div>
         </div>
       </div>

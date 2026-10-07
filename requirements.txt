@@ -13,7 +13,7 @@ tqdm>=4.65
 pandas>=2.0
 scipy>=1.11
 # Domain adaptation pipeline
-ultralytics>=8.0
+ultralytics==8.4.173  # Historical training executed under Ultralytics 8.4.155; evaluation/audit verified on 8.4.173
 requests>=2.31
 pyyaml>=6.0
 # Web scraping (scrape_calibrated_catalog.py)

@@ -89,7 +89,7 @@ def run_stage1():
 def run_stage2(stage1_weights: str):
     print("\n" + "=" * 70)
     print("STARTING STAGE 2: RT-DETR-L Full Unfreeze on Histogram-Matched Data")
-    print("Dataset: Combined HM (4,068 images, multi-reference histogram matched)")
+    print("Dataset: Combined HM (4,068 images, 20-tile averaged-reference histogram matched)")
     print("Config: epochs=50, lr0=0.0001, cos_lr=True, patience=20, freeze=0, batch=4")
     print("=" * 70)
 

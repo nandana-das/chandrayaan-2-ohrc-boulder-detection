@@ -177,7 +177,7 @@ md_lines.extend([
     "### Empirical Takeaways:",
     "1. **Source Representation Trade-Off:** Across all architectures evaluated with No-HM (YOLO26n, YOLOv8n, YOLOv5s), the No-HM condition achieves higher in-distribution test metrics on the native source distribution ($\\Delta \\text{mAP@0.5} \\approx -0.14$ to $-0.16$ under HM). This is because HM deliberately warps source histograms to match the target OHRC CDF, creating a synthetic domain divergence from the native source test distribution.",
     "2. **Target Activation Regularization:** In the unlabeled target OHRC domain, No-HM models suffer from massive over-activation (positive-tile rates of 84.22%–94.91%, with 2.43M to 3.36M detections). HM stabilizes the detectors, reducing YOLO26n positive tiles from 84.85% to 6.72% (5,084 detections) and YOLOv5s from 94.91% to 12.26% (24,452 detections).",
-    "3. **Absence of Ground Truth:** Because target OHRC imagery is completely unlabeled, target candidate reductions must NOT be described as an accuracy improvement, but rather as evidence of photometric domain stabilization preventing widespread background false-triggering.",
+    "3. **Absence of Ground Truth:** Because target OHRC imagery is completely unlabeled, target candidate reductions must NOT be described as an accuracy improvement, but rather as evidence of photometric domain stabilization mitigating extensive candidate over-activation across background terrain.",
 ])
 
 md_path = OUT_TAB / "table_hm_vs_nohm_full.md"

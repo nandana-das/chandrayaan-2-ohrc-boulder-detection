@@ -76,7 +76,7 @@ Every single augmentation parameter is strictly identical across all five models
   - Models with `batch = 8` accumulated $\frac{64}{8} = 8$ batches per optimizer step ($8 \times 8 = 64$ images).
   - YOLO26m with `batch = 4` accumulated $\frac{64}{4} = 16$ batches per optimizer step ($4 \times 16 = 64$ images).
 - **Effective batch size:** All five models executed optimizer updates every **64 images**.
-- **Physical batch difference:** The only divergence is the physical mini-batch size (4 vs 8) affecting BatchNorm statistics during forward passes.
+- **Physical batch difference:** The YOLO26m run used a smaller physical mini-batch because of the 4-GB GPU memory constraint; the framework's accumulation schedule maintained an effective optimizer batch size of 64. The physical mini-batch difference may still affect batch-dependent behavior.
 
 ### D. Starting Weights Lineage
 - **Stage-1 checkpoints:** YOLO26n, YOLOv8n, and YOLOv5s were initialized from their respective un-matched Stage-1 lunar checkpoints (`runs/stage1_<model>_combined/weights/best.pt`).

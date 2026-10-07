@@ -44,9 +44,9 @@
 
 ### Key Statistical Uncertainty Observations:
 1. **Model Capacity Scaling Separation (YOLO26n -> YOLO26s -> YOLO26m):**
-   - **YOLO26n vs. YOLO26s:** Point estimate mAP@0.5 jumps from 0.5292 to 0.6023 (+0.0731). The 95% CI for YOLO26n [0.4912, 0.5647] does NOT overlap with YOLO26s [0.5701, 0.6340], confirming statistically significant separation in detection performance.
-   - **YOLO26s vs. YOLO26m:** Point estimate mAP@0.5 increases from 0.6023 to 0.6463 (+0.0440). The 95% CI for YOLO26m is [0.6128, 0.6782], demonstrating superior localization and precision with minimal CI overlap.
+   - **YOLO26n vs. YOLO26s:** Point estimate mAP@0.5 increases from 0.5292 to 0.6023 (+0.0731). The 95% CI for YOLO26n [0.5030, 0.5551] does not overlap with YOLO26s [0.5774, 0.6286]; the bootstrap intervals indicate clear separation in this evaluation.
+   - **YOLO26s vs. YOLO26m:** Point estimate mAP@0.5 increases from 0.6023 to 0.6463 (+0.0440). The 95% CI for YOLO26m is [0.6237, 0.6709], demonstrating improved localization and precision with minimal CI overlap relative to YOLO26s [0.5774, 0.6286].
 2. **Comparative Architecture Baselines:**
-   - **YOLOv8n:** Lowest test performance (mAP@0.5 = 0.4813 [0.4435, 0.5186]). Completely separated below YOLO26s, YOLO26m, and YOLOv5s.
-   - **YOLOv5s:** Intermediate capacity benchmark (mAP@0.5 = 0.5737 [0.5375, 0.6088]).
-3. **Absence of Overclaiming:** The non-overlapping confidence intervals between YOLO26n and YOLO26s/m provide solid empirical evidence that capacity scaling provides genuine source-domain feature discriminability.
+   - **YOLOv8n:** Lowest test performance (mAP@0.5 = 0.4813 [0.4552, 0.5068]). Clear separation below YOLO26s, YOLO26m, and YOLOv5s.
+   - **YOLOv5s:** Intermediate capacity benchmark (mAP@0.5 = 0.5737 [0.5510, 0.5979]).
+3. **Absence of Overclaiming:** The non-overlapping bootstrap intervals between YOLO26n and YOLO26s/m indicate clear separation in this evaluation, confirming that capacity scaling provides consistent source-domain feature discriminability without asserting formal statistical significance.

@@ -8,7 +8,7 @@
 ---
 
 ## 1. Executive Summary & Objective
-This experiment evaluates the empirical effect of scaling detector capacity within the YOLO26 model family from **YOLO26n** (2.50M parameters) to **YOLO26s** (10.01M parameters) and **YOLO26m** (21.90M parameters).
+This experiment evaluates the empirical effect of scaling detector capacity within the YOLO26 model family from **YOLO26n** (2.504M parameters) to **YOLO26s** (9.949M parameters; older un-consolidated report noted 10.01M) and **YOLO26m** (21.774M parameters; older un-consolidated report noted 21.90M).
 
 All models were trained strictly under the authoritative Stage-2 controlled histogram-matched (HM) domain adaptation protocol on the combined lunar dataset (`data/combined_hm/`) and evaluated on:
 1. **Held-Out Source Test Split:** 262 images, 7,268 ground-truth boulder instances.
@@ -85,7 +85,7 @@ Because target Chandrayaan-2 OHRC imagery is completely unlabeled, detection cou
 2. **Training Batch Size & Gradient Accumulation Allocation:**
    - **Nominal Batch Size Architecture:** Ultralytics dynamically couples gradient accumulation to nominal batch size (`nbs = 64`): `accumulate = max(round(nbs / batch_size), 1)`. Models trained with physical `batch = 8` accumulated 8 steps ($8 \times 8 = 64$ images), while YOLO26m trained with physical `batch = 4` accumulated 16 steps ($4 \times 16 = 64$ images).
    - **Effective Optimizer Batch Parity:** All models executed weight updates with an **identical effective optimizer batch size of 64 images**.
-   - **Physical Device Mini-Batch Allocation:** Physical batch size was set to 4 for YOLO26m strictly due to hardware memory limits on the 4.0 GB VRAM RTX 3050 Laptop GPU (physical batch 8 required 4.70 GB VRAM, causing OOM). The only divergence is in forward-pass batch normalization statistics.
+   - **Physical Device Mini-Batch Allocation:** The YOLO26m run used a smaller physical mini-batch because of the 4-GB GPU memory constraint; the framework's accumulation schedule maintained an effective optimizer batch size of 64. The physical mini-batch difference may still affect batch-dependent behavior.
 3. **Single Scale Hardware:** Evaluations were conducted on a single 4 GB RTX 3050 GPU, reflecting real-world edge/portable deployment constraints.
 
 ---
