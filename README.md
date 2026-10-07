@@ -257,12 +257,6 @@ chandrayaan-2-ohrc-boulder-detection/
 │   ├── confidence_analysis/
 │   ├── ohrc_inference/
 │   └── polar_inference/
-├── runs/
-│   ├── stage2_yolo26n_combined_hm_cosine/
-│   ├── stage2_yolo26s_combined_hm_cosine/
-│   ├── stage2_yolo26m_combined_hm_cosine/
-│   ├── stage2_yolov8n_combined_hm_cosine/
-│   └── stage2_yolov5s_combined_hm_cosine/
 ├── data/
 ├── requirements.txt
 └── README.md
@@ -308,7 +302,7 @@ Ultra-deep polar inference
 Publication figures and tables
 ```
 
-See the individual scripts and the consolidated reports under `results/paper_tables/` for experiment-specific commands and outputs.
+See the individual scripts and the consolidated reports under `results/paper_tables/` for experiment-specific commands and outputs. Generated model checkpoints, large raw inference dumps, and superseded diagnostic artifacts are intentionally not versioned.
 
 ---
 
