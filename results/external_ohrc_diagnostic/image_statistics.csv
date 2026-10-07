@@ -1,3 +1,0 @@
-Dataset_Group,Sample_Count,Image_Mode,Mean_Intensity,Std_Intensity,Min_Intensity,Max_Intensity,Percentile_2,Percentile_50_Median,Percentile_98
-External OHRC Benchmark (10 test images),10,RGB (3 identical channels / grayscale conversion),112.16,67.9,0,255,8.0,113.0,237.0
-"Project Calibrated OHRC Usable Tiles (1,000 sampled tiles)",1000,Lossless Grayscale PNG (single channel uint8),118.16,60.23,0,255,0.0,118.0,255.0
