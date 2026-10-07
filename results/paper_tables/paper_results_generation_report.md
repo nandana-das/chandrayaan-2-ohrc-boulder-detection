@@ -263,7 +263,7 @@ The following analyses are **unsupported or scientifically invalid** with curren
 | **YOLO26m HM** | 1,447 | 309 | 2.22% | 0.3057 ± 0.0924 | 4.68 |
 | **YOLOv5s HM** | 7,202 | 1,779 | 12.79% | 0.2854 ± 0.0760 | 4.05 |
 | **YOLO26s HM** | 8,128 | 2,124 | 15.27% | 0.2699 ± 0.0708 | 3.83 |
-| **YOLO26n HM** | 10,085 | 1,174 | 8.44% | 0.2546 ± 0.0573 | 8.59 |
+| **YOLO26n HM** | 10,085 | 1,173 | 8.44% | 0.2546 ± 0.0573 | 8.60 |
 | **YOLOv8n HM** | 71,001 | 6,047 | 43.48% | 0.2862 ± 0.0792 | 11.74 |
 | *RT-DETR-L (Historical)* | *532,844* | *11,664* | *83.88%* | *0.4287 ± 0.1587* | *45.68* |
 
@@ -298,10 +298,12 @@ The following analyses are **unsupported or scientifically invalid** with curren
 | **Full YOLO26 Scaling** | 2.50M $\rightarrow$ 21.77M (+770%) | **+0.1171** (0.5292 $\rightarrow$ 0.6463) | **+0.0833** (0.5442 $\rightarrow$ 0.6275) | 6.72% $\rightarrow$ 1.39% (-5.33 pp) | 12.93× GFLOPs |
 
 ### 6. Methodological Differences & Comparability Caveats
-1. **Training Batch Size Allocation (`batch=4` vs. `batch=8`):**
-   - **Controlled Stage-2 Baselines (YOLO26n, YOLOv8n, YOLOv5s) and YOLO26s:** Trained with batch size 8 (`batch=8`) on CUDA:0. YOLO26s comfortably fits in the 4.0 GB VRAM limit of the NVIDIA RTX 3050 Laptop GPU at batch 8.
-   - **YOLO26m:** Due to strict 4.0 GB VRAM hardware limitations on the NVIDIA GeForce RTX 3050 Laptop GPU, YOLO26m was resumed and completed with batch size 4 (`batch=4`).
-   - **Comparability Assessment:** While learning rate schedule (AdamW, $\text{lr}_0=10^{-4}$, cosine decay to $\text{lrf}=0.01$), total epochs (50), input resolution (640×640), and dataset splits (4,379 / 697 / 262) were identical, the smaller batch size results in increased gradient stochasticity per step and different batch normalization accumulation dynamics. This represents a pragmatic hardware constraint rather than an experimental variable, and must be explicitly noted in comparative discussions.
+1. **Training Batch Size & Gradient Accumulation Allocation:**
+   - **Nominal Batch Size Architecture:** Ultralytics dynamically determines gradient accumulation via `accumulate = max(round(nbs / batch_size), 1)` with nominal batch size `nbs = 64`. Consequently:
+     - For models with physical `batch = 8` (YOLO26n, YOLO26s, YOLOv8n, YOLOv5s): accumulation steps = 8 $\implies 8 \times 8 = \mathbf{64}$ images per optimizer step.
+     - For YOLO26m with physical `batch = 4`: accumulation steps = 16 $\implies 4 \times 16 = \mathbf{64}$ images per optimizer step.
+   - **Effective Optimizer Batch Parity:** All five models updated weights at the exact same gradient frequency with an **identical effective optimizer batch size of 64 images**.
+   - **Physical Device Mini-Batch Allocation:** Physical batch size was set to 4 for YOLO26m strictly due to hardware constraints on the 4.0 GB VRAM NVIDIA RTX 3050 Laptop GPU (where physical batch 8 required 4.70 GB VRAM and caused memory swapping/OOM). Physical batch differences only affect forward-pass batch normalization statistics.
 2. **Unlabeled Target-Domain Framing:**
    - Because both the 31,769 usable OHRC tiles and 13,906 ultra-deep polar tiles lack ground-truth annotations, target-domain metrics reflect candidate activation density, operating frequency, and confidence calibration rather than verified true/false positive rates.
 3. **Regional Disparity Interpretation:**

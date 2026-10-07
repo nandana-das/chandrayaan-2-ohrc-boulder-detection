@@ -82,10 +82,10 @@ Because target Chandrayaan-2 OHRC imagery is completely unlabeled, detection cou
 
 ## 5. Methodological Limitations & Comparability Caveats
 1. **Unlabeled Target Ground Truth:** The 31,769 OHRC tiles and 13,906 polar tiles lack human ground-truth labels. Differences in candidate count cannot be mathematically partitioned into true boulder detections versus spurious terrain activations.
-2. **Training Batch Size Allocation (Batch Size 4 vs. Batch Size 8):**
-   - **Controlled Stage-2 Baselines (YOLO26n, YOLOv8n, YOLOv5s) and YOLO26s:** Trained with batch size 8 (`batch=8`) on CUDA:0.
-   - **YOLO26m Scaling Experiment:** Due to strict 4.0 GB VRAM limitations on the NVIDIA RTX 3050 Laptop GPU, YOLO26m was resumed and completed with batch size 4 (`batch=4`).
-   - **Scientific Impact:** Batch size alters the stochastic gradient noise and batch normalization statistics during training. While both configurations utilized identical optimizer settings (AdamW, lr0=0.0001, cosine decay to lrf=0.01) over 50 epochs on the identical 4,379/697/262 data split, this difference must be explicitly disclosed. It represents a practical hardware-constrained adaptation rather than an intentional hyperparameter divergence.
+2. **Training Batch Size & Gradient Accumulation Allocation:**
+   - **Nominal Batch Size Architecture:** Ultralytics dynamically couples gradient accumulation to nominal batch size (`nbs = 64`): `accumulate = max(round(nbs / batch_size), 1)`. Models trained with physical `batch = 8` accumulated 8 steps ($8 \times 8 = 64$ images), while YOLO26m trained with physical `batch = 4` accumulated 16 steps ($4 \times 16 = 64$ images).
+   - **Effective Optimizer Batch Parity:** All models executed weight updates with an **identical effective optimizer batch size of 64 images**.
+   - **Physical Device Mini-Batch Allocation:** Physical batch size was set to 4 for YOLO26m strictly due to hardware memory limits on the 4.0 GB VRAM RTX 3050 Laptop GPU (physical batch 8 required 4.70 GB VRAM, causing OOM). The only divergence is in forward-pass batch normalization statistics.
 3. **Single Scale Hardware:** Evaluations were conducted on a single 4 GB RTX 3050 GPU, reflecting real-world edge/portable deployment constraints.
 
 ---
