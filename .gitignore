@@ -1,77 +1,67 @@
-# =============================================================
-# Chandrayaan-2 OHRC — .gitignore
-# =============================================================
-# IMPORTANT: Never commit original satellite data, credentials,
-# PRADAN session data, or large generated datasets.
-# =============================================================
+# Chandrayaan-2 OHRC project
+# Keep raw mission data, local environments, checkpoints, caches, and
+# generated training/inference dumps out of version control.
 
-# ── PRADAN downloads (never commit) ──────────────────────────
-pradan.issdc.gov.in/
-
-# ── Satellite data archives ───────────────────────────────────
+# Raw / downloaded mission data
 *.zip
 *.ZIP
-
-# ── Raw PDS4 science images (very large, never commit) ────────
 *.img
 *.IMG
 *.imq
 *.IMQ
-
-# ── Extracted large binary data ───────────────────────────────
+pradan.issdc.gov.in/
+data/raw/
+data/calibrated/
 data/extracted/
 data/tiles/
 data/previews/
-data/raw/
+data/combined/
+data/combined_hm/
+data/combined_nohm/
+data/prieur/
+data/rmam/
+data/external_ohrc_roboflow/
+data/annotation_sample/
+data/priority_sample/
 
-# ── Results / generated CSVs and logs (optional: commit summary CSVs) ──
-results/quality_control/
-results/ajax_view_*.xml
-results/live_browse_page.html
-scripts/test_*.py
-scripts/pradan_bulk_download.py
-# Uncomment below if you want to exclude all results:
-# results/
+# Generated model artifacts
+runs/
+weights/
+*.pt
+*.onnx
+*.engine
+*.cache
 
-
-# ── Python ────────────────────────────────────────────────────
+# Python / environments
+.venv/
+venv/
+env/
+ENV/
 __pycache__/
 *.py[cod]
-*$py.class
-*.pyc
 *.pyo
 *.pyd
-*.pkl
-.Python
 *.egg-info/
 dist/
 build/
 *.egg
 .eggs/
 
-# ── Virtual environments ──────────────────────────────────────
-.venv/
-venv/
-env/
-ENV/
-
-# ── Jupyter ───────────────────────────────────────────────────
+# Jupyter / IDE
 .ipynb_checkpoints/
 *.ipynb
-
-# ── IDEs ──────────────────────────────────────────────────────
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# ── OS ────────────────────────────────────────────────────────
+# OS
 .DS_Store
 Thumbs.db
 desktop.ini
 
-# ── Authentication & credentials (NEVER commit) ───────────────
+# Credentials / secrets
 *.pem
 *.key
 *.crt
@@ -82,43 +72,13 @@ credentials.json
 cookies.txt
 session.txt
 
-# ── Temporary files ───────────────────────────────────────────
+# Temporary files
 *.tmp
 *.bak
 *.log
 *.part
-!results/preprocessing_errors.log
 tmp/
 temp/
 
-runs/
-weights/
-*.pt
-data/tiles/
-runs/
-weights/
-*.pt
-data/tiles/
-data/raw/
-data/calibrated/
-pradan.issdc.gov.in/
+# Local machine paths
 C:/ohrc_detections/
-.venv/
-
-data/annotation_sample/
-data/priority_sample/
-data/rmam/
-
-data/combined/
-data/combined_hm/train/
-data/combined_hm/val/
-data/prieur/boulder2024/
-data/prieur/moon_only/
-
-data/combined_hm/
-data/combined_nohm/
-!data/combined_nohm/dataset_combined_nohm.yaml
-data/prieur/
-data/external_ohrc_roboflow/
-*.cache
-
