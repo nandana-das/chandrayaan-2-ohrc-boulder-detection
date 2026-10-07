@@ -14,10 +14,16 @@ OUT_LBL = Path(r"D:\Nandana\MTECH\Semester 3\Projects\TP\lunar-landslide-boulder
 
 if __name__ == '__main__':
     OUT_IMG.mkdir(parents=True, exist_ok=True)
-    OUT_LBL.mkdir(parents=True, exist_ok=True)
-    refs = [np.array(Image.open(f).convert('L')).astype(float)
-            for f in random.sample(list(OHRC.glob('*.png')), 20)]
-    reference = np.mean(refs, axis=0).astype(np.uint8)
+    # Load or generate deterministic 20-tile averaged OHRC reference (seed=42)
+    ref_artifact = BASE / "results/histogram_matching/averaged_reference_seed_42.png"
+    if ref_artifact.exists():
+        reference = np.array(Image.open(ref_artifact).convert('L'))
+    else:
+        ohrc_tiles = sorted(OHRC.glob('*.png'))
+        rng = random.Random(42)
+        sample = rng.sample(ohrc_tiles, 20)
+        refs = [np.array(Image.open(f).convert('L')).astype(float) for f in sample]
+        reference = np.mean(refs, axis=0).astype(np.uint8)
     prieur_imgs = list(PRIEUR.glob('*.png'))
     for i, f in enumerate(prieur_imgs):
         img = np.array(Image.open(f).convert('L'))

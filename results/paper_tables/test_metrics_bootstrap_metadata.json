@@ -1,0 +1,20 @@
+{
+  "script": "scripts/experiments/compute_bootstrap_ci.py",
+  "seed": 42,
+  "n_replicates": 1000,
+  "resampling_unit": "image-level with replacement (262 test images)",
+  "ground_truth_instances": 7268,
+  "models_evaluated": [
+    "YOLO26n",
+    "YOLO26s",
+    "YOLO26m",
+    "YOLOv8n",
+    "YOLOv5s"
+  ],
+  "evaluation_protocol": "Ultralytics DetectionValidator stats interception + ap_per_class",
+  "artifacts": [
+    "results/paper_tables/test_metrics_bootstrap_full.csv",
+    "results/paper_tables/test_metrics_bootstrap_summary.csv",
+    "results/paper_tables/test_metrics_bootstrap_summary.md"
+  ]
+}

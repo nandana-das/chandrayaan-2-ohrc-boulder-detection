@@ -14,12 +14,16 @@ if __name__ == '__main__':
     OUT_IMG.mkdir(parents=True, exist_ok=True)
     OUT_LBL.mkdir(parents=True, exist_ok=True)
 
-    # Keep the reference identical to train/val: sorted tiles + fixed seed.
-    ohrc_tiles = sorted(OHRC.glob('*.png'))
-    rng = random.Random(42)
-    sample = rng.sample(ohrc_tiles, 20)
-    refs = [np.array(Image.open(f).convert('L')).astype(float) for f in sample]
-    reference = np.mean(refs, axis=0).astype(np.uint8)
+    # Keep the reference identical to train/val: use deterministic artifact or sorted tiles + fixed seed.
+    ref_artifact = BASE / "results/histogram_matching/averaged_reference_seed_42.png"
+    if ref_artifact.exists():
+        reference = np.array(Image.open(ref_artifact).convert('L'))
+    else:
+        ohrc_tiles = sorted(OHRC.glob('*.png'))
+        rng = random.Random(42)
+        sample = rng.sample(ohrc_tiles, 20)
+        refs = [np.array(Image.open(f).convert('L')).astype(float) for f in sample]
+        reference = np.mean(refs, axis=0).astype(np.uint8)
 
     test_imgs = list((PRIEUR_TEST / 'images').glob('*.png'))
     for i, f in enumerate(test_imgs):

@@ -1,0 +1,57 @@
+{
+  "generator_script": "scripts/make_deterministic_hm_reference.py",
+  "random_seed": 42,
+  "sampling_method": "random.Random(42).sample(sorted(glob('*.png')), 20)",
+  "source_tile_directory": "data/tiles/usable",
+  "total_source_tiles_available": 31769,
+  "sample_size": 20,
+  "artifact_averaged_image": {
+    "filename": "averaged_reference_seed_42.png",
+    "relative_path": "results/histogram_matching/averaged_reference_seed_42.png",
+    "dimensions": [
+      640,
+      640
+    ],
+    "mode": "L (8-bit grayscale)",
+    "mean_intensity": 117.2254,
+    "std_intensity": 15.3903,
+    "min_intensity": 56,
+    "max_intensity": 167,
+    "sha256": "1280311eca70d24e9610d671330bf6bf8296b8733ca4177dcb0b2a3c1e831c74"
+  },
+  "artifact_tiles_csv": {
+    "filename": "reference_tiles_seed_42.csv",
+    "relative_path": "results/histogram_matching/reference_tiles_seed_42.csv",
+    "num_records": 20,
+    "sha256": "410e74e3fc1cfa2e6e78b15569bf75b7414f3ea141449521f10da8ebe1196639"
+  },
+  "selected_tiles": [
+    "ch2_ohr_ncp_20250516T1145499313_d_img_d18_x08320_y85760.png",
+    "ch2_ohr_ncp_20190907T0438126359_d_img_g26_x03200_y86400.png",
+    "ch2_ohr_ncp_20190906T2241285714_d_img_gds_x03200_y41600.png",
+    "ch2_ohr_ncp_20250516T1342347288_d_img_d18_x11520_y64000.png",
+    "ch2_ohr_ncp_20240425T1209509264_d_img_d18_x03200_y88960.png",
+    "ch2_ohr_ncp_20240425T1012478407_d_img_d18_x11520_y04480.png",
+    "ch2_ohr_ncp_20240425T1012478407_d_img_d18_x08320_y09600.png",
+    "ch2_ohr_ncp_20190907T0438126359_d_img_g26_x07680_y41600.png",
+    "ch2_ohr_ncp_20250516T1342347288_d_img_d18_x10880_y47360.png",
+    "ch2_ohr_ncp_20190907T0438126359_d_img_g26_x01920_y83200.png",
+    "ch2_ohr_ncp_20250516T1342347288_d_img_d18_x01920_y57600.png",
+    "ch2_ohr_ncp_20250516T1342347288_d_img_d18_x11520_y45440.png",
+    "ch2_ohr_ncp_20250612T2031048828_d_img_d18_x10880_y57600.png",
+    "ch2_ohr_ncp_20250516T0948068899_d_img_d18_x07040_y07040.png",
+    "ch2_ohr_ncp_20190907T0438126359_d_img_g26_x00000_y37120.png",
+    "ch2_ohr_ncp_20250516T1145499313_d_img_d18_x01280_y52480.png",
+    "ch2_ohr_ncp_20240425T1603031918_d_img_d18_x00640_y10240.png",
+    "ch2_ohr_ncp_20190906T2241285714_d_img_gds_x03840_y85760.png",
+    "ch2_ohr_ncp_20190906T2241285714_d_img_gds_x03840_y42880.png",
+    "ch2_ohr_ncp_20190907T0438126359_d_img_g26_x00640_y86400.png"
+  ],
+  "verification_status": {
+    "count_verified": true,
+    "all_tiles_exist": true,
+    "no_duplicates": true,
+    "averaged_reference_exists": true,
+    "deterministic_reproducible": true
+  }
+}
