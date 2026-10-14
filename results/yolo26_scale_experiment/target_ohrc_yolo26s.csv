@@ -1,2 +1,0 @@
-Model,Condition,Candidate_Detections,Positive_Tiles,Total_Tiles,Positive_Tile_Rate_Pct,Mean_Confidence
-YOLO26s HM,HM,14102,2050,31769,6.45,0.295
